@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/Button';
 import { useAuthStore } from '@/store/authStore';
 import { toast } from '@/store/toastStore';
 import { plansApi, subscriptionsApi } from '@/services/api/apiClient';
+import { PRICING_PLANS } from '@/config/appConfig';
 import RazorpayCheckout from '@/components/ui/RazorpayCheckout';
 
 export default function Subscriptions() {
@@ -19,11 +20,31 @@ export default function Subscriptions() {
     setLoading(true);
     try {
       const [plansRes, subRes] = await Promise.allSettled([plansApi.getPublic(), subscriptionsApi.getCurrent()]);
-      if (plansRes.status === 'fulfilled') setPlans(Array.isArray(plansRes.value) ? plansRes.value : []);
+      if (plansRes.status === 'fulfilled' && Array.isArray(plansRes.value) && plansRes.value.length > 0) {
+        setPlans(plansRes.value);
+      } else {
+        setPlans(
+          PRICING_PLANS.map((p) => ({
+            id: p.id,
+            name: p.name,
+            monthlyPrice: parseInt(p.price.replace(/[^\d]/g, ''), 10) || 999,
+            description: p.description,
+            features: p.features,
+          }))
+        );
+      }
       if (subRes.status === 'fulfilled') setCurrentSubscription(subRes.value || null);
     } catch (error: any) {
       console.warn('[Subscriptions] load failed', error);
-      setPlans([]);
+      setPlans(
+        PRICING_PLANS.map((p) => ({
+          id: p.id,
+          name: p.name,
+          monthlyPrice: parseInt(p.price.replace(/[^\d]/g, ''), 10) || 999,
+          description: p.description,
+          features: p.features,
+        }))
+      );
       setCurrentSubscription(null);
     } finally {
       setLoading(false);
@@ -93,8 +114,8 @@ export default function Subscriptions() {
   return (
     <div className="space-y-8 text-left max-w-6xl mx-auto px-4 py-6 md:px-0">
       <div className="space-y-2">
-        <div className="inline-flex items-center rounded-full border border-blue-200 bg-blue-50 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.22em] text-blue-700 dark:border-blue-900/70 dark:bg-blue-950/40 dark:text-blue-300">
-          Billing &amp; plans
+        <div className="inline-flex items-center rounded-full border border-blue-200 bg-blue-50 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-blue-700 dark:border-blue-900/70 dark:bg-blue-950/40 dark:text-blue-300">
+          Billing &amp; Plans
         </div>
         <h1 className="text-2xl font-sans font-bold text-text-primary-light dark:text-text-primary-dark md:text-3xl">
           Subscription Management
@@ -117,7 +138,7 @@ export default function Subscriptions() {
 
               <div className="relative z-10">
                 <div className="flex items-center justify-between mb-5">
-                  <span className="rounded-full border border-blue-200 bg-blue-50 px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.2em] text-blue-700 dark:border-blue-900/60 dark:bg-blue-950/40 dark:text-blue-300">
+                  <span className="rounded-full border border-blue-200 bg-blue-50 px-2.5 py-1 text-xs font-bold uppercase tracking-wider text-blue-700 dark:border-blue-900/60 dark:bg-blue-950/40 dark:text-blue-300">
                     Active Subscription
                   </span>
                   <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-50 px-2.5 py-1 text-xs font-semibold text-emerald-600 ring-1 ring-emerald-200 dark:bg-emerald-950/40 dark:text-emerald-300 dark:ring-emerald-900/70">
@@ -135,7 +156,7 @@ export default function Subscriptions() {
 
                 <div className="mt-6 grid grid-cols-2 gap-4 rounded-2xl border border-slate-200 bg-white/70 p-4 backdrop-blur-sm dark:border-slate-700 dark:bg-slate-900/50">
                   <div>
-                    <span className="block text-[10px] font-bold uppercase tracking-[0.18em] text-slate-500 dark:text-slate-400">
+                    <span className="block text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
                       Start Date
                     </span>
                     <span className="mt-2 block text-sm font-semibold text-text-primary-light dark:text-text-primary-dark">
@@ -144,7 +165,7 @@ export default function Subscriptions() {
                   </div>
 
                   <div>
-                    <span className="block text-[10px] font-bold uppercase tracking-[0.18em] text-slate-500 dark:text-slate-400">
+                    <span className="block text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
                       Expiration Date
                     </span>
                     <span className="mt-2 block text-sm font-semibold text-text-primary-light dark:text-text-primary-dark">
@@ -154,12 +175,12 @@ export default function Subscriptions() {
                 </div>
               </div>
 
-              <div className="relative z-10 mt-8 flex items-center justify-between gap-4 border-t border-slate-200 pt-5 dark:border-slate-700">
-                <div>
-                  <span className="text-2xl font-extrabold text-text-primary-light dark:text-text-primary-dark">
+              <div className="relative z-10 mt-8 flex items-baseline justify-between gap-4 border-t border-slate-200 pt-5 dark:border-slate-700">
+                <div className="flex items-baseline gap-1.5">
+                  <span className="text-3xl font-extrabold text-text-primary-light dark:text-text-primary-dark">
                     ₹{activePlan?.monthlyPrice || 0}
                   </span>
-                  <span className="text-xs text-text-secondary-light dark:text-text-secondary-dark"> / month</span>
+                  <span className="text-xs text-text-secondary-light dark:text-text-secondary-dark">/month</span>
                 </div>
                 <Button
                   variant="outline"
@@ -175,13 +196,13 @@ export default function Subscriptions() {
 
           <motion.div initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.35, delay: 0.05 }}>
             <Card className="h-full rounded-3xl border border-slate-200 bg-white/90 p-6 shadow-lg shadow-slate-200/50 dark:border-slate-700 dark:bg-slate-900/80 dark:shadow-none">
-              <h3 className="text-sm font-bold uppercase tracking-[0.18em] text-slate-500 dark:text-slate-400 mb-4">
+              <h3 className="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-4">
                 Included Benefits
               </h3>
               <ul className="space-y-3.5 text-sm text-text-secondary-light dark:text-text-secondary-dark">
                 {normalizeFeatures(activePlan?.features).map((feature: string, idx: number) => (
                   <li key={`${feature}-${idx}`} className="flex items-center gap-2.5 rounded-xl bg-slate-50 px-3 py-2 dark:bg-slate-800/60">
-                    <span className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-emerald-100 text-emerald-600 dark:bg-emerald-900/40 dark:text-emerald-300">
+                    <span className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-emerald-100 text-emerald-600 dark:bg-emerald-900/40 dark:text-emerald-300 text-xs">
                       ✓
                     </span>
                     <span>{feature}</span>
@@ -199,7 +220,7 @@ export default function Subscriptions() {
             </p>
           </Card>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-2">
             {plans.length > 0 ? (
               plans.map((plan, idx) => {
                 const isPopular = getIsPopular(plan, idx);
@@ -217,7 +238,7 @@ export default function Subscriptions() {
                     }`}>
                       {isPopular && (
                         <div className="absolute right-4 top-4">
-                          <span className="rounded-full border border-indigo-200 bg-indigo-50 px-2 py-1 text-[10px] font-bold uppercase tracking-[0.18em] text-indigo-700 dark:border-indigo-900/60 dark:bg-indigo-950/40 dark:text-indigo-300">
+                          <span className="rounded-full border border-indigo-200 bg-indigo-50 px-2.5 py-1 text-xs font-bold uppercase tracking-wider text-indigo-700 dark:border-indigo-900/60 dark:bg-indigo-950/40 dark:text-indigo-300">
                             Most Popular
                           </span>
                         </div>
@@ -231,15 +252,15 @@ export default function Subscriptions() {
                           </p>
                         </div>
 
-                        <div className="flex items-end gap-2">
+                        <div className="flex items-baseline gap-1.5">
                           <span className="text-3xl font-extrabold text-text-primary-light dark:text-text-primary-dark">₹{plan.monthlyPrice || 0}</span>
-                          <span className="pb-1 text-xs text-text-secondary-light dark:text-text-secondary-dark">/ month</span>
+                          <span className="text-xs text-text-secondary-light dark:text-text-secondary-dark">/month</span>
                         </div>
 
                         <ul className="space-y-2.5 text-sm text-text-secondary-light dark:text-text-secondary-dark">
                           {normalizeFeatures(plan.features).map((feature: string, featureIdx: number) => (
                             <li key={`${plan.id}-${featureIdx}`} className="flex items-center gap-2.5 rounded-xl bg-slate-50 px-3 py-2 dark:bg-slate-800/60">
-                              <span className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-emerald-100 text-emerald-600 dark:bg-emerald-900/40 dark:text-emerald-300">
+                              <span className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-emerald-100 text-emerald-600 dark:bg-emerald-900/40 dark:text-emerald-300 text-xs">
                                 ✓
                               </span>
                               <span>{feature}</span>

@@ -29,7 +29,7 @@ export function Logo({
             <span className="bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent">One</span>
           </div>
           {showTagline && (
-            <span className="text-[7.5px] font-sans font-bold tracking-[0.16em] text-slate-400 dark:text-slate-500 uppercase mt-1 leading-none">
+            <span className="text-xs font-sans font-medium tracking-wide text-text-secondary-light dark:text-text-secondary-dark mt-1 leading-none">
               One Apply. Endless Opportunities.
             </span>
           )}

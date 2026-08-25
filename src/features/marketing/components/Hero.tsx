@@ -76,7 +76,7 @@ export function Hero() {
         >
           <Link to={ROUTES.SIGNUP} className="w-full sm:w-auto">
             <Button variant="gradient" size="lg" className="w-full sm:w-auto px-8">
-              Get started
+              Get Started
             </Button>
           </Link>
           <a href="#features" className="w-full sm:w-auto">

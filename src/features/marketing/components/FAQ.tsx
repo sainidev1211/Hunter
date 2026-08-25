@@ -41,9 +41,15 @@ export function FAQ() {
   return (
     <section id="faqs" className="py-20 bg-slate-50 dark:bg-bg-dark transition-colors duration-300">
       <Container>
-        <div className="text-center max-w-2xl mx-auto mb-16 space-y-4">
+        <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
+          <div className="inline-flex items-center justify-center rounded-full border border-blue-200 bg-blue-50 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-blue-700 dark:border-blue-900/60 dark:bg-blue-950/40 dark:text-blue-300">
+            Support &amp; Answers
+          </div>
           <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-text-primary-light dark:text-text-primary-dark">
-            Frequently Asked <span className="text-primary">Questions</span>
+            Frequently Asked{' '}
+            <span className="bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent">
+              Questions
+            </span>
           </h2>
           <p className="text-base sm:text-lg text-text-secondary-light dark:text-text-secondary-dark">
             Everything you need to know about how we streamline your career growth.

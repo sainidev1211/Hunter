@@ -162,7 +162,7 @@ export function Navbar() {
                               <span className={`font-semibold ${notif.unread ? 'text-text-primary-light dark:text-text-primary-dark' : 'text-text-secondary-light dark:text-text-secondary-dark'}`}>
                                 {notif.title}
                               </span>
-                              <span className="text-[10px] text-slate-400 whitespace-nowrap">{notif.time}</span>
+                              <span className="text-xs text-slate-400 whitespace-nowrap">{notif.time}</span>
                             </div>
                             <p className="text-text-secondary-light dark:text-text-secondary-dark mt-1 leading-relaxed">
                               {notif.description}

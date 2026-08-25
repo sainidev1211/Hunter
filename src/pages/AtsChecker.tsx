@@ -81,7 +81,7 @@ export default function AtsChecker() {
                 placeholder="Paste the job posting description here to get targeted keyword matching..."
                 className="w-full p-4 text-xs font-sans bg-slate-50 dark:bg-bg-dark border border-border-light dark:border-border-dark rounded-xl focus:outline-none focus:ring-2 focus:ring-primary text-text-primary-light dark:text-text-primary-dark transition-all"
               />
-              <span className="text-[10px] text-text-secondary-light dark:text-text-secondary-dark block text-right">
+              <span className="text-xs text-text-secondary-light dark:text-text-secondary-dark block text-right">
                 {jobDescription.length} characters
               </span>
           </div>
@@ -199,7 +199,7 @@ export default function AtsChecker() {
                     <span className="text-4xl font-black text-text-primary-light dark:text-text-primary-dark">
                       {result.score}
                     </span>
-                    <span className="text-[10px] text-text-secondary-light dark:text-text-secondary-dark font-bold uppercase">
+                    <span className="text-xs text-text-secondary-light dark:text-text-secondary-dark font-bold uppercase tracking-wider">
                       Out of 100
                     </span>
                   </div>

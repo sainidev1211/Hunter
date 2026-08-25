@@ -195,10 +195,44 @@ export const paymentsApi = {
 };
 
 // ---------------------------------------------------------------------------
-// Plans
+// Plans (with fast in-memory caching & deduplicated requests)
 // ---------------------------------------------------------------------------
+let cachedPlansPromise: Promise<any[]> | null = null;
+let cachedPlansData: any[] | null = null;
+let lastPlansFetchTime = 0;
+const PLANS_CACHE_TTL = 5 * 60 * 1000; // 5 minutes
+
 export const plansApi = {
-  getPublic: () => apiFetch<any[]>('/plans/public'),
+  getPublic: async (forceRefresh = false): Promise<any[]> => {
+    const now = Date.now();
+    if (!forceRefresh && cachedPlansData && (now - lastPlansFetchTime < PLANS_CACHE_TTL)) {
+      return cachedPlansData;
+    }
+    if (!forceRefresh && cachedPlansPromise) {
+      return cachedPlansPromise;
+    }
+
+    cachedPlansPromise = (async () => {
+      try {
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 3500);
+        const data = await apiFetch<any[]>('/plans/public', { signal: controller.signal });
+        clearTimeout(timeoutId);
+        if (Array.isArray(data) && data.length > 0) {
+          cachedPlansData = data;
+          lastPlansFetchTime = Date.now();
+        }
+        return data;
+      } catch (err) {
+        if (cachedPlansData) return cachedPlansData;
+        throw err;
+      } finally {
+        cachedPlansPromise = null;
+      }
+    })();
+
+    return cachedPlansPromise;
+  },
   getById: (id: string) => apiFetch<any>(`/plans/${id}`),
 };
 

@@ -390,7 +390,7 @@ export default function Dashboard() {
                     Live candidate dispatch volume by day
                   </p>
                 </div>
-                <span className="text-[11px] font-semibold px-2.5 py-1 rounded-full bg-blue-50 text-blue-700 dark:bg-blue-950/40 dark:text-blue-300">
+                <span className="text-xs font-semibold px-2.5 py-1 rounded-full bg-blue-50 text-blue-700 dark:bg-blue-950/40 dark:text-blue-300">
                   Weekly Report
                 </span>
               </div>
@@ -421,11 +421,11 @@ export default function Dashboard() {
                               style={{ height: `${heightPercent}%` }}
                             />
                             {/* Hover Tooltip */}
-                            <div className="opacity-0 group-hover:opacity-100 pointer-events-none absolute -top-8 bg-slate-900 text-white text-[10px] font-semibold px-2 py-1 rounded shadow-lg transition-opacity z-20 whitespace-nowrap">
+                            <div className="opacity-0 group-hover:opacity-100 pointer-events-none absolute -top-8 bg-slate-900 text-white text-xs font-semibold px-2 py-1 rounded shadow-lg transition-opacity z-20 whitespace-nowrap">
                               {day}: {dayCount} applications
                             </div>
                           </div>
-                          <span className="text-[11px] font-medium text-slate-500 dark:text-slate-400">{day}</span>
+                          <span className="text-xs font-medium text-slate-500 dark:text-slate-400">{day}</span>
                         </div>
                       );
                     })}
@@ -529,7 +529,7 @@ export default function Dashboard() {
                               {company}{location ? ` • ${location}` : ''} • Applied {appliedDate}
                             </p>
                             {campaign && (
-                              <span className="inline-block text-[10px] font-semibold text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/20 px-2 py-0.5 rounded-full">
+                              <span className="inline-block text-xs font-semibold text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/20 px-2 py-0.5 rounded-full">
                                 {campaign}
                               </span>
                             )}
@@ -579,8 +579,8 @@ export default function Dashboard() {
               {/* Header */}
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-left">
                 <div>
-                  <div className="text-[10px] uppercase font-extrabold tracking-[0.2em] text-blue-600 dark:text-cyan-400">
-                    APPLYONE BY THE NUMBERS
+                  <div className="text-xs uppercase font-extrabold tracking-wider text-blue-600 dark:text-cyan-400">
+                    ApplyOne by the Numbers
                   </div>
                   <h3 className="text-lg sm:text-xl font-extrabold text-slate-900 dark:text-white mt-1 tracking-tight">
                     Delivering Results That Matter
@@ -603,27 +603,27 @@ export default function Dashboard() {
                 <div className="p-3 rounded-xl bg-slate-50/70 dark:bg-slate-800/40 border border-slate-100 dark:border-slate-800 flex flex-col items-center justify-center">
                   <span className="text-base mb-1">⭐</span>
                   <span className="text-lg sm:text-xl font-extrabold text-slate-900 dark:text-white">25K+</span>
-                  <span className="text-[11px] font-medium text-slate-500 dark:text-slate-400">Happy Users</span>
+                  <span className="text-xs font-medium text-slate-500 dark:text-slate-400">Happy Users</span>
                 </div>
                 <div className="p-3 rounded-xl bg-slate-50/70 dark:bg-slate-800/40 border border-slate-100 dark:border-slate-800 flex flex-col items-center justify-center">
                   <span className="text-base mb-1">🚀</span>
                   <span className="text-lg sm:text-xl font-extrabold text-slate-900 dark:text-white">98K+</span>
-                  <span className="text-[11px] font-medium text-slate-500 dark:text-slate-400">Applications Submitted</span>
+                  <span className="text-xs font-medium text-slate-500 dark:text-slate-400">Applications Submitted</span>
                 </div>
                 <div className="p-3 rounded-xl bg-slate-50/70 dark:bg-slate-800/40 border border-slate-100 dark:border-slate-800 flex flex-col items-center justify-center">
                   <span className="text-base mb-1">📅</span>
                   <span className="text-lg sm:text-xl font-extrabold text-slate-900 dark:text-white">12.5K+</span>
-                  <span className="text-[11px] font-medium text-slate-500 dark:text-slate-400">Interviews Scheduled</span>
+                  <span className="text-xs font-medium text-slate-500 dark:text-slate-400">Interviews Scheduled</span>
                 </div>
                 <div className="p-3 rounded-xl bg-slate-50/70 dark:bg-slate-800/40 border border-slate-100 dark:border-slate-800 flex flex-col items-center justify-center">
                   <span className="text-base mb-1">🏆</span>
                   <span className="text-lg sm:text-xl font-extrabold text-slate-900 dark:text-white">2.1K+</span>
-                  <span className="text-[11px] font-medium text-slate-500 dark:text-slate-400">Offers Secured</span>
+                  <span className="text-xs font-medium text-slate-500 dark:text-slate-400">Offers Secured</span>
                 </div>
                 <div className="p-3 rounded-xl bg-slate-50/70 dark:bg-slate-800/40 border border-slate-100 dark:border-slate-800 flex flex-col items-center justify-center col-span-2 sm:col-span-1">
                   <span className="text-base mb-1">🌍</span>
                   <span className="text-lg sm:text-xl font-extrabold text-slate-900 dark:text-white">20+</span>
-                  <span className="text-[11px] font-medium text-slate-500 dark:text-slate-400">Countries Worldwide</span>
+                  <span className="text-xs font-medium text-slate-500 dark:text-slate-400">Countries Worldwide</span>
                 </div>
               </div>
 
@@ -642,11 +642,11 @@ export default function Dashboard() {
                   {/* Step 1 */}
                   <div className="p-3.5 rounded-xl border border-slate-200/70 dark:border-slate-800 bg-white dark:bg-slate-900/50 relative">
                     <div className="flex items-center justify-between mb-1.5">
-                      <span className="text-[10px] font-bold text-blue-600 dark:text-cyan-400">01</span>
+                      <span className="text-xs font-bold text-blue-600 dark:text-cyan-400">01</span>
                       <span className="text-sm">📄</span>
                     </div>
                     <div className="font-bold text-xs text-slate-900 dark:text-white">Share Your Profile</div>
-                    <div className="text-[11px] text-slate-500 dark:text-slate-400 mt-1 leading-snug">
+                    <div className="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-snug">
                       Upload your resume and preferences.
                     </div>
                   </div>
@@ -654,11 +654,11 @@ export default function Dashboard() {
                   {/* Step 2 */}
                   <div className="p-3.5 rounded-xl border border-slate-200/70 dark:border-slate-800 bg-white dark:bg-slate-900/50 relative">
                     <div className="flex items-center justify-between mb-1.5">
-                      <span className="text-[10px] font-bold text-indigo-600 dark:text-indigo-400">02</span>
+                      <span className="text-xs font-bold text-indigo-600 dark:text-indigo-400">02</span>
                       <span className="text-sm">🎯</span>
                     </div>
                     <div className="font-bold text-xs text-slate-900 dark:text-white">We Find & Apply</div>
-                    <div className="text-[11px] text-slate-500 dark:text-slate-400 mt-1 leading-snug">
+                    <div className="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-snug">
                       Our team finds relevant jobs and applies on your behalf.
                     </div>
                   </div>
@@ -666,11 +666,11 @@ export default function Dashboard() {
                   {/* Step 3 */}
                   <div className="p-3.5 rounded-xl border border-slate-200/70 dark:border-slate-800 bg-white dark:bg-slate-900/50 relative">
                     <div className="flex items-center justify-between mb-1.5">
-                      <span className="text-[10px] font-bold text-purple-600 dark:text-purple-400">03</span>
+                      <span className="text-xs font-bold text-purple-600 dark:text-purple-400">03</span>
                       <span className="text-sm">📈</span>
                     </div>
                     <div className="font-bold text-xs text-slate-900 dark:text-white">Track & Optimize</div>
-                    <div className="text-[11px] text-slate-500 dark:text-slate-400 mt-1 leading-snug">
+                    <div className="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-snug">
                       We monitor responses and optimize your campaign.
                     </div>
                   </div>
@@ -678,11 +678,11 @@ export default function Dashboard() {
                   {/* Step 4 */}
                   <div className="p-3.5 rounded-xl border border-slate-200/70 dark:border-slate-800 bg-white dark:bg-slate-900/50 relative">
                     <div className="flex items-center justify-between mb-1.5">
-                      <span className="text-[10px] font-bold text-emerald-600 dark:text-emerald-400">04</span>
+                      <span className="text-xs font-bold text-emerald-600 dark:text-emerald-400">04</span>
                       <span className="text-sm">🎉</span>
                     </div>
                     <div className="font-bold text-xs text-slate-900 dark:text-white">Get Interviewed</div>
-                    <div className="text-[11px] text-slate-500 dark:text-slate-400 mt-1 leading-snug">
+                    <div className="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-snug">
                       You focus on interviews and landing the offer.
                     </div>
                   </div>
@@ -791,11 +791,11 @@ export default function Dashboard() {
             <Card className="p-6 border border-border-light dark:border-border-dark bg-white dark:bg-card-dark shadow-md flex flex-col justify-between">
               <div>
                 <div className="flex items-center justify-between mb-4">
-                  <span className="text-[10px] uppercase font-bold tracking-wider text-primary dark:text-blue-400 bg-blue-50 dark:bg-blue-950/40 px-2.5 py-1 rounded-full">
+                  <span className="text-xs uppercase font-bold tracking-wider text-primary dark:text-blue-400 bg-blue-50 dark:bg-blue-950/40 px-2.5 py-1 rounded-full">
                     Profile Asset
                   </span>
                   {activeResume && (
-                    <span className="text-[10px] text-green-600 dark:text-green-400 font-semibold">
+                    <span className="text-xs text-green-600 dark:text-green-400 font-semibold">
                       ✓ Active
                     </span>
                   )}
@@ -816,7 +816,7 @@ export default function Dashboard() {
                         <span className="text-xs font-semibold text-text-primary-light dark:text-text-primary-dark truncate block">
                           {getResumeFileName(activeResume)}
                         </span>
-                        <span className="text-[10px] text-text-secondary-light dark:text-text-secondary-dark block">
+                        <span className="text-xs text-text-secondary-light dark:text-text-secondary-dark block">
                           Version {activeResume.version} · {(activeResume.fileSize / 1024).toFixed(0)} KB
                         </span>
                       </div>
@@ -837,7 +837,7 @@ export default function Dashboard() {
                     <p className="text-xs text-orange-600 dark:text-orange-400 font-semibold">
                       No resume uploaded yet
                     </p>
-                    <p className="text-[10px] text-orange-500 dark:text-orange-500 mt-0.5">
+                    <p className="text-xs text-orange-500 dark:text-orange-500 mt-0.5">
                       Upload your resume to start applying
                     </p>
                   </div>
@@ -878,7 +878,7 @@ export default function Dashboard() {
                       <span className="block text-xs font-medium text-text-primary-light dark:text-text-primary-dark">
                         {activeResume ? 'Drag new file or click to replace' : 'Drag file or click to upload'}
                       </span>
-                      <span className="block text-[10px]">PDF or Word formats up to 5MB</span>
+                      <span className="block text-xs">PDF or Word formats up to 5MB</span>
                     </div>
                   )}
                 </div>
@@ -972,7 +972,7 @@ export default function Dashboard() {
                 </p>
               </div>
             </div>
-            <span className="text-[11px] font-semibold text-primary dark:text-cyan-400 whitespace-nowrap bg-white dark:bg-slate-800 px-3 py-1.5 rounded-xl shadow-sm border border-slate-200/60 dark:border-slate-700">
+            <span className="text-xs font-semibold text-primary dark:text-cyan-400 whitespace-nowrap bg-white dark:bg-slate-800 px-3 py-1.5 rounded-xl shadow-sm border border-slate-200/60 dark:border-slate-700">
               More powerful career tools are coming soon
             </span>
           </div>
@@ -980,7 +980,7 @@ export default function Dashboard() {
           {/* Section Main Header */}
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
             <div className="space-y-2 max-w-2xl text-left">
-              <span className="text-[11px] uppercase tracking-[0.2em] font-extrabold text-blue-600 dark:text-cyan-400">
+              <span className="text-xs uppercase tracking-wider font-extrabold text-blue-600 dark:text-cyan-400">
                 ApplyOne Spotlight
               </span>
               <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
@@ -1061,7 +1061,7 @@ export default function Dashboard() {
                 <h3 className="text-sm font-bold text-slate-900 dark:text-white group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">
                   AI Resume
                 </h3>
-                <span className="text-[9px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded bg-purple-100 dark:bg-purple-950 text-purple-700 dark:text-purple-300">
+                <span className="text-xs font-bold uppercase tracking-wider px-1.5 py-0.5 rounded bg-purple-100 dark:bg-purple-950 text-purple-700 dark:text-purple-300">
                   Soon
                 </span>
               </div>
@@ -1117,7 +1117,7 @@ export default function Dashboard() {
                   { label: 'Salary', value: selectedApp.salary || '—' },
                 ].map(({ label, value }) => (
                   <div key={label} className="bg-slate-50 dark:bg-slate-800/50 rounded-xl p-3">
-                    <p className="text-[10px] font-semibold uppercase tracking-wider text-slate-400 dark:text-slate-500 mb-1">{label}</p>
+                    <p className="text-xs font-semibold uppercase tracking-wider text-slate-400 dark:text-slate-500 mb-1">{label}</p>
                     <p className="text-sm font-semibold text-slate-900 dark:text-white truncate">{value}</p>
                   </div>
                 ))}
@@ -1173,7 +1173,7 @@ export default function Dashboard() {
                         <div className="absolute -left-[13px] top-1.5 w-2.5 h-2.5 rounded-full bg-blue-500 ring-2 ring-white dark:ring-card-dark" />
                         <div className="min-w-0">
                           <p className="text-sm font-semibold text-slate-900 dark:text-white">{h.status}</p>
-                          <p className="text-[11px] text-slate-500 dark:text-slate-400">
+                          <p className="text-xs text-slate-500 dark:text-slate-400">
                             {h.timestamp ? new Date(h.timestamp).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' }) : ''}
                             {h.note && <span className="ml-2 text-slate-400">— {h.note}</span>}
                           </p>

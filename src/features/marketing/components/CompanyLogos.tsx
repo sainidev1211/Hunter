@@ -99,10 +99,10 @@ export function CompanyLogos() {
   ];
 
   return (
-    <section className="py-20 border-y border-border-light dark:border-border-dark bg-slate-50 dark:bg-slate-900/40 transition-colors duration-300">
+    <section className="py-16 border-y border-border-light dark:border-border-dark bg-slate-50 dark:bg-slate-900/40 transition-colors duration-300">
       <Container>
-        <div className="flex flex-col space-y-10">
-          <span className="text-xs sm:text-sm font-extrabold text-text-secondary-light dark:text-text-secondary-dark uppercase tracking-widest text-center">
+        <div className="flex flex-col space-y-8">
+          <span className="text-xs sm:text-sm font-semibold text-text-secondary-light dark:text-text-secondary-dark tracking-wider text-center uppercase">
             Securing interview match queues at global market leaders
           </span>
           

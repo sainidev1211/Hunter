@@ -23,9 +23,9 @@ export function Footer() {
 
           {/* Product Links */}
           <div className="text-left">
-            <h4 className="text-sm font-semibold text-text-primary-light dark:text-text-primary-dark tracking-wider uppercase mb-4">
+            <h3 className="text-sm font-semibold text-text-primary-light dark:text-text-primary-dark tracking-wider uppercase mb-4">
               Product
-            </h4>
+            </h3>
             <ul className="space-y-2">
               {NAVIGATION_LINKS.footer.product.map((link) => (
                 <li key={link.label}>
@@ -42,9 +42,9 @@ export function Footer() {
 
           {/* Company Links */}
           <div className="text-left">
-            <h4 className="text-sm font-semibold text-text-primary-light dark:text-text-primary-dark tracking-wider uppercase mb-4">
+            <h3 className="text-sm font-semibold text-text-primary-light dark:text-text-primary-dark tracking-wider uppercase mb-4">
               Company
-            </h4>
+            </h3>
             <ul className="space-y-2">
               {NAVIGATION_LINKS.footer.company.map((link) => (
                 <li key={link.label}>
@@ -70,9 +70,9 @@ export function Footer() {
 
           {/* Support / Contact Links */}
           <div className="text-left">
-            <h4 className="text-sm font-semibold text-text-primary-light dark:text-text-primary-dark tracking-wider uppercase mb-4">
+            <h3 className="text-sm font-semibold text-text-primary-light dark:text-text-primary-dark tracking-wider uppercase mb-4">
               Contact & Support
-            </h4>
+            </h3>
             <ul className="space-y-2">
               {NAVIGATION_LINKS.footer.contact.map((link) => (
                 <li key={link.label}>

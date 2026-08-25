@@ -6,6 +6,7 @@ import {
   Param,
   Body,
   UseGuards,
+  Header,
 } from '@nestjs/common';
 import { ApiTags, ApiOperation, ApiBearerAuth } from '@nestjs/swagger';
 import { PlansService } from './plans.service.js';
@@ -21,12 +22,14 @@ export class PlansController {
   constructor(private readonly plansService: PlansService) {}
 
   @Get('public')
+  @Header('Cache-Control', 'public, max-age=300, s-maxage=3600, stale-while-revalidate=86400')
   @ApiOperation({ summary: 'Get active plans for pricing page' })
   getPublicPlans() {
     return this.plansService.getPublicPlans();
   }
 
   @Get('compare')
+  @Header('Cache-Control', 'public, max-age=300, s-maxage=3600, stale-while-revalidate=86400')
   @ApiOperation({ summary: 'Get plan feature matrix comparison' })
   getPlanComparison() {
     return this.plansService.getPlanComparison();

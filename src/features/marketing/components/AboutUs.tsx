@@ -64,9 +64,9 @@ export function AboutUs() {
           transition={{ duration: 0.6 }}
           className="p-8 rounded-2xl bg-gradient-to-r from-blue-600/5 to-cyan-600/5 border border-blue-500/10 dark:border-blue-500/5 text-center space-y-4"
         >
-          <h4 className="text-lg font-bold text-text-primary-light dark:text-text-primary-dark">
+          <h3 className="text-lg sm:text-xl font-bold text-text-primary-light dark:text-text-primary-dark">
             Join the automated hiring revolution.
-          </h4>
+          </h3>
           <p className="text-sm text-text-secondary-light dark:text-text-secondary-dark max-w-xl mx-auto">
             Our systems sync your target criteria, credentials, and resume formatting, applying to new matches matching your profile guidelines automatically.
           </p>

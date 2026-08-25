@@ -108,8 +108,9 @@ export function Reviews() {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  const itemsPerView = windowWidth >= 1024 ? 3 : windowWidth >= 768 ? 2 : 1;
-  const maxIndex = reviews.length - itemsPerView;
+  // Use fractional itemsPerView to provide a partial next-card scroll hint
+  const itemsPerView = windowWidth >= 1024 ? 3.2 : windowWidth >= 768 ? 2.2 : 1.15;
+  const maxIndex = Math.max(0, Math.floor(reviews.length - Math.floor(itemsPerView)));
 
   // Clamp current index when items per view resize
   useEffect(() => {
@@ -118,11 +119,11 @@ export function Reviews() {
     }
   }, [itemsPerView, currentIndex, maxIndex]);
 
-  // Auto-scroll loop every 5 seconds
+  // Auto-scroll loop every 6 seconds
   useEffect(() => {
     const interval = setInterval(() => {
-      handleNext();
-    }, 5000);
+      setCurrentIndex((prev) => (prev >= maxIndex ? 0 : prev + 1));
+    }, 6000);
     return () => clearInterval(interval);
   }, [currentIndex, maxIndex]);
 
@@ -131,23 +132,26 @@ export function Reviews() {
   };
 
   const handleNext = () => {
-    setCurrentIndex((prev) => (prev === maxIndex ? 0 : prev + 1));
+    setCurrentIndex((prev) => (prev >= maxIndex ? 0 : prev + 1));
   };
 
-  // Mathematical percentage translation calculation
+  // Translation percentage based on total number of reviews
   const translateX = -currentIndex * (100 / reviews.length);
 
   return (
     <section className="py-20 bg-white dark:bg-bg-dark transition-colors duration-300 relative overflow-hidden">
       
       {/* Background decorations */}
-      <div className="absolute top-1/4 left-1/4 w-[300px] h-[300px] rounded-full bg-blue-500/5 dark:bg-blue-600/5 blur-3xl pointer-events-none" />
-      <div className="absolute bottom-1/4 right-1/4 w-[300px] h-[300px] rounded-full bg-cyan-500/5 dark:bg-cyan-600/5 blur-3xl pointer-events-none" />
+      <div className="absolute top-1/4 left-1/4 w-80 h-80 rounded-full bg-blue-500/5 dark:bg-blue-600/5 blur-3xl pointer-events-none" />
+      <div className="absolute bottom-1/4 right-1/4 w-80 h-80 rounded-full bg-cyan-500/5 dark:bg-cyan-600/5 blur-3xl pointer-events-none" />
 
       <Container>
-        {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6 text-left">
+        {/* Section Header with Closely Positioned Carousel Controls */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-6 text-left">
           <div className="space-y-4 max-w-2xl">
+            <div className="inline-flex items-center justify-center rounded-full border border-blue-200 bg-blue-50 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-blue-700 dark:border-blue-900/60 dark:bg-blue-950/40 dark:text-blue-300">
+              Community Reviews
+            </div>
             <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-text-primary-light dark:text-text-primary-dark">
               Trusted by{' '}
               <span className="bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent">
@@ -159,11 +163,11 @@ export function Reviews() {
             </p>
           </div>
 
-          {/* Navigation Controls */}
-          <div className="flex items-center gap-3">
+          {/* Carousel Arrows positioned close to the cards */}
+          <div className="flex items-center gap-2 self-start md:self-end">
             <button
               onClick={handlePrev}
-              className="p-2.5 rounded-lg border border-border-light dark:border-border-dark hover:bg-bg-alt-light dark:hover:bg-bg-alt-dark text-text-primary-light dark:text-text-primary-dark transition-colors cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary"
+              className="p-3 rounded-xl border border-border-light dark:border-border-dark bg-white dark:bg-card-dark hover:bg-bg-alt-light dark:hover:bg-bg-alt-dark text-text-primary-light dark:text-text-primary-dark shadow-sm hover:shadow transition-all cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary"
               aria-label="Previous review"
             >
               <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -172,7 +176,7 @@ export function Reviews() {
             </button>
             <button
               onClick={handleNext}
-              className="p-2.5 rounded-lg border border-border-light dark:border-border-dark hover:bg-bg-alt-light dark:hover:bg-bg-alt-dark text-text-primary-light dark:text-text-primary-dark transition-colors cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary"
+              className="p-3 rounded-xl border border-border-light dark:border-border-dark bg-white dark:bg-card-dark hover:bg-bg-alt-light dark:hover:bg-bg-alt-dark text-text-primary-light dark:text-text-primary-dark shadow-sm hover:shadow transition-all cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary"
               aria-label="Next review"
             >
               <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -182,8 +186,8 @@ export function Reviews() {
           </div>
         </div>
 
-        {/* Carousel Viewport */}
-        <div className="overflow-hidden w-full py-4">
+        {/* Carousel Viewport with Partial Next-Card Scroll Hint */}
+        <div className="overflow-hidden w-full py-4 -mx-2 sm:-mx-3 px-2 sm:px-3">
           <motion.div
             className="flex"
             animate={{ x: `${translateX}%` }}
@@ -198,16 +202,15 @@ export function Reviews() {
                 style={{
                   width: `${100 / reviews.length}%`,
                 }}
-                className="px-3"
+                className="px-2.5 sm:px-3"
               >
-                <Card className="p-6 h-full flex flex-col justify-between hover:border-slate-300 dark:hover:border-slate-700 shadow-sm hover:shadow-md transition-colors duration-300">
-                  <div className="space-y-4">
+                <Card className="p-6 h-full flex flex-col justify-between rounded-2xl border border-border-light dark:border-border-dark bg-white dark:bg-card-dark hover:border-slate-300 dark:hover:border-slate-700 shadow-sm hover:shadow-md transition-all duration-300 text-left">
+                  <div className="space-y-3.5 flex-1 flex flex-col">
                     {/* Stars Rating */}
-                    <div className="flex items-center gap-0.5">
+                    <div className="flex items-center gap-1">
                       {[...Array(5)].map((_, i) => {
                         const starNum = i + 1;
                         if (review.rating >= starNum) {
-                          // Full star
                           return (
                             <svg
                               key={i}
@@ -219,10 +222,8 @@ export function Reviews() {
                             </svg>
                           );
                         } else if (review.rating >= starNum - 0.5) {
-                          // Half star
                           return (
                             <div key={i} className="relative h-4.5 w-4.5">
-                              {/* Background empty star */}
                               <svg
                                 className="absolute inset-0 h-4.5 w-4.5 text-slate-200 dark:text-slate-700 fill-current"
                                 viewBox="0 0 20 20"
@@ -230,7 +231,6 @@ export function Reviews() {
                               >
                                 <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                               </svg>
-                              {/* Foreground filled left-half star */}
                               <div className="absolute inset-0 w-[50%] overflow-hidden pointer-events-none">
                                 <svg
                                   className="h-4.5 w-4.5 text-amber-400 fill-current"
@@ -244,7 +244,6 @@ export function Reviews() {
                             </div>
                           );
                         } else {
-                          // Empty star
                           return (
                             <svg
                               key={i}
@@ -265,15 +264,15 @@ export function Reviews() {
                     </p>
                   </div>
 
-                  {/* Profile Signature */}
-                  <div className="flex items-center gap-3 pt-6 border-t border-border-light dark:border-border-dark/60 mt-6">
+                  {/* Clean Divider & Profile Signature */}
+                  <div className="flex items-center gap-3 pt-4 border-t border-border-light dark:border-border-dark mt-6">
                     <div className="h-10 w-10 rounded-full bg-gradient-to-tr from-blue-500 to-cyan-500 flex items-center justify-center text-white text-xs font-semibold shadow-inner flex-shrink-0">
                       {review.avatar}
                     </div>
                     <div className="min-w-0 text-left">
-                      <h4 className="text-sm font-bold text-text-primary-light dark:text-text-primary-dark truncate">
+                      <h3 className="text-sm font-bold text-text-primary-light dark:text-text-primary-dark truncate">
                         {review.name}
-                      </h4>
+                      </h3>
                       <p className="text-xs text-text-secondary-light dark:text-text-secondary-dark truncate">
                         {review.role} {review.company ? `@ ${review.company}` : ''}
                       </p>

@@ -12,7 +12,14 @@ import { FAQ } from '@/features/marketing/components/FAQ';
 import { SEO } from '@/components/shared/SEO';
 import { StructuredData } from '@/components/shared/StructuredData';
 
+import { plansApi } from '@/services/api/apiClient';
+
 export default function LandingPage() {
+  React.useEffect(() => {
+    // Preload pricing data in background
+    plansApi.getPublic().catch(() => {});
+  }, []);
+
   return (
     <>
       {/* SEO metadata */}

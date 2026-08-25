@@ -13,12 +13,12 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     const baseStyles = 'inline-flex items-center justify-center font-medium rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary disabled:opacity-50 disabled:pointer-events-none cursor-pointer hover:scale-[1.01] active:scale-[0.99]';
     
     const variants = {
-      primary: 'bg-primary text-white hover:bg-primary-hover shadow-sm focus:ring-primary',
-      secondary: 'bg-secondary text-white hover:bg-secondary-hover shadow-sm focus:ring-secondary',
+      primary: 'bg-primary text-white hover:bg-primary-hover shadow-sm focus:ring-primary border border-transparent',
+      secondary: 'bg-secondary text-white hover:bg-secondary-hover shadow-sm focus:ring-secondary border border-transparent',
       outline: 'border border-border-light dark:border-border-dark bg-transparent text-text-primary-light dark:text-text-primary-dark hover:bg-bg-alt-light dark:hover:bg-bg-alt-dark',
-      ghost: 'bg-transparent text-text-primary-light dark:text-text-primary-dark hover:bg-bg-alt-light dark:hover:bg-bg-alt-dark',
-      link: 'bg-transparent text-primary hover:underline p-0 focus:ring-0 focus:ring-offset-0 hover:scale-100 active:scale-100',
-      gradient: 'bg-gradient-to-r from-blue-600 to-cyan-600 text-white hover:from-blue-700 hover:to-cyan-700 shadow-md focus:ring-cyan-500',
+      ghost: 'bg-transparent text-text-primary-light dark:text-text-primary-dark hover:bg-bg-alt-light dark:hover:bg-bg-alt-dark border border-transparent',
+      link: 'bg-transparent text-primary hover:underline p-0 focus:ring-0 focus:ring-offset-0 hover:scale-100 active:scale-100 border border-transparent',
+      gradient: 'bg-gradient-to-r from-blue-600 to-cyan-600 text-white hover:from-blue-700 hover:to-cyan-700 shadow-md focus:ring-cyan-500 border border-transparent',
     };
 
     const sizes = {

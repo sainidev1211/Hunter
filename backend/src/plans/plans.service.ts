@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException, BadRequestException, Logger } from '@nestjs/common';
+import { Injectable, NotFoundException, BadRequestException, Logger, OnModuleInit } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { CreatePlanDto, UpdatePlanDto } from './dto/plan.dto.js';
@@ -57,56 +57,98 @@ const DEFAULT_PUBLIC_PLANS = [
 ];
 
 @Injectable()
-export class PlansService {
+export class PlansService implements OnModuleInit {
   private readonly logger = new Logger(PlansService.name);
+  private cachedPublicPlans: any[] | null = null;
+  private cacheTimestamp = 0;
+  private readonly CACHE_TTL_MS = 5 * 60 * 1000; // 5 minutes in-memory cache
+  private isSeeded = false;
+
   constructor(
     @InjectModel(Plan.name) private planModel: Model<PlanDocument>,
     private readonly prisma: PrismaService,
   ) {}
 
+  async onModuleInit() {
+    // Seed in the background without blocking server startup
+    this.ensureSeeded().catch((err) => {
+      this.logger.warn('Background seed notice:', err?.message || err);
+    });
+  }
+
   private async ensureSeeded() {
-    // Always upsert DEFAULT_PUBLIC_PLANS to ensure prices are up-to-date
-    for (const plan of DEFAULT_PUBLIC_PLANS) {
-      await this.planModel.findOneAndUpdate(
-        { id: plan.id },
-        { $set: { ...plan } },
-        { upsert: true, new: true, setDefaultsOnInsert: true },
-      );
-    }
-
-    const count = await this.planModel.countDocuments();
-    if (count > DEFAULT_PUBLIC_PLANS.length) return;
-
+    if (this.isSeeded) return;
     try {
-      const pgPlans = await this.prisma.subscriptionPlan.findMany();
-      for (const p of pgPlans) {
-        const exists = await this.planModel.findOne({ id: p.id }).lean();
-        if (exists) continue;
-        await this.planModel.create({
-          id: p.id,
-          slug: p.slug,
-          name: p.name,
-          description: p.description as any,
-          monthlyPrice: Number(p.monthlyPrice),
-          yearlyPrice: p.yearlyPrice ? Number(p.yearlyPrice) : undefined,
-          currency: p.currency,
-          jobCredits: p.jobCredits,
-          aiCredits: p.aiCredits,
-          resumeCredits: p.resumeCredits,
-          atsCredits: p.atsCredits,
-          features: p.features as any,
-          status: p.status,
-          displayOrder: p.displayOrder,
-        } as any);
+      // Upsert default plans
+      for (const plan of DEFAULT_PUBLIC_PLANS) {
+        await this.planModel.findOneAndUpdate(
+          { id: plan.id },
+          { $set: { ...plan } },
+          { upsert: true, new: true, setDefaultsOnInsert: true },
+        );
       }
+
+      const count = await this.planModel.countDocuments();
+      if (count <= DEFAULT_PUBLIC_PLANS.length) {
+        try {
+          const pgPlans = await Promise.race([
+            this.prisma.subscriptionPlan.findMany(),
+            new Promise<never>((_, reject) => setTimeout(() => reject(new Error('Postgres seed timeout')), 2000)),
+          ]);
+          for (const p of pgPlans || []) {
+            const exists = await this.planModel.findOne({ id: p.id }).lean();
+            if (exists) continue;
+            await this.planModel.create({
+              id: p.id,
+              slug: p.slug,
+              name: p.name,
+              description: p.description as any,
+              monthlyPrice: Number(p.monthlyPrice),
+              yearlyPrice: p.yearlyPrice ? Number(p.yearlyPrice) : undefined,
+              currency: p.currency,
+              jobCredits: p.jobCredits,
+              aiCredits: p.aiCredits,
+              resumeCredits: p.resumeCredits,
+              atsCredits: p.atsCredits,
+              features: p.features as any,
+              status: p.status,
+              displayOrder: p.displayOrder,
+            } as any);
+          }
+        } catch (e: any) {
+          // Non-blocking postgres seed fallback
+        }
+      }
+      this.isSeeded = true;
     } catch (e: any) {
-      this.logger.warn('Failed to seed plans from Postgres', e?.message || e);
+      this.logger.warn('Plan seeding fallback triggered:', e?.message || e);
     }
   }
 
-  async getPublicPlans() {
-    await this.ensureSeeded();
-    return this.planModel.find({ status: 'ACTIVE' }).sort({ displayOrder: 1 }).lean();
+  private invalidateCache() {
+    this.cachedPublicPlans = null;
+    this.cacheTimestamp = 0;
+  }
+
+  async getPublicPlans(): Promise<any[]> {
+    const now = Date.now();
+    if (this.cachedPublicPlans && (now - this.cacheTimestamp < this.CACHE_TTL_MS)) {
+      return this.cachedPublicPlans;
+    }
+
+    try {
+      const plans = await this.planModel.find({ status: 'ACTIVE' }).sort({ displayOrder: 1 }).lean();
+      if (plans && plans.length > 0) {
+        this.cachedPublicPlans = plans;
+        this.cacheTimestamp = now;
+        return plans;
+      }
+    } catch (error: any) {
+      this.logger.warn('Failed to query Mongo plans, falling back immediately:', error?.message || error);
+    }
+
+    // Immediate zero-latency fallback
+    return DEFAULT_PUBLIC_PLANS;
   }
 
   async getAllPlans() {
@@ -115,26 +157,35 @@ export class PlansService {
   }
 
   async getPlanById(id: string) {
-    await this.ensureSeeded();
     const plan = await this.planModel.findOne({ id }).lean();
-    if (!plan) throw new NotFoundException('Plan not found');
+    if (!plan) {
+      const defaultPlan = DEFAULT_PUBLIC_PLANS.find((p) => p.id === id);
+      if (defaultPlan) return defaultPlan;
+      throw new NotFoundException('Plan not found');
+    }
     return plan;
   }
 
   async createPlan(dto: CreatePlanDto) {
     const existing = await this.planModel.findOne({ slug: dto.slug }).lean();
     if (existing) throw new BadRequestException('Plan with this slug already exists');
-    return this.planModel.create(dto as any);
+    const created = await this.planModel.create(dto as any);
+    this.invalidateCache();
+    return created;
   }
 
   async updatePlan(id: string, dto: Partial<UpdatePlanDto>) {
     await this.getPlanById(id);
-    return this.planModel.findOneAndUpdate({ id }, dto, { new: true }).lean();
+    const updated = await this.planModel.findOneAndUpdate({ id }, dto, { new: true }).lean();
+    this.invalidateCache();
+    return updated;
   }
 
   async togglePlanStatus(id: string, status: string) {
     await this.getPlanById(id);
-    return this.planModel.findOneAndUpdate({ id }, { status }, { new: true }).lean();
+    const updated = await this.planModel.findOneAndUpdate({ id }, { status }, { new: true }).lean();
+    this.invalidateCache();
+    return updated;
   }
 
   async getPlanComparison() {
