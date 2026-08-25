@@ -93,7 +93,7 @@ export const PRICING_PLANS: PricingPlan[] = [
     period: '/month',
     description: 'Essential matching and dispatch tools to jumpstart your applications.',
     features: [
-      '10 daily job matches.',
+      'Upto 10 daily job matches.',
       '10 credits / month',
       '50-60 applications/ month',
     ],
@@ -108,7 +108,7 @@ export const PRICING_PLANS: PricingPlan[] = [
     period: '/month',
     description: 'Perfect for active job candidates hunting for multiple interview invites.',
     features: [
-      '15 daily job matches.',
+      'Upto 15 daily job matches.',
       '20 credits/month',
       '80-100 applications/month',
       'ATS Score Checker included',
@@ -124,7 +124,7 @@ export const PRICING_PLANS: PricingPlan[] = [
     period: '/month',
     description: 'Uncapped automation features designed for rapid placement campaigns.',
     features: [
-      '25 daily job matches.',
+      'Upto 25 daily job matches.',
       '30 credits / month',
       '150 applications/month',
       'ATS Score Checker included',
