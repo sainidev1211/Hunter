@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Card } from '@/components/ui/Card';
 import { Container } from '@/components/ui/Container';
 
@@ -16,84 +16,93 @@ interface Review {
 const reviews: Review[] = [
   {
     id: '1',
-    name: 'Rohan Sharma',
-    role: 'CS Student',
-    company: 'IIT Delhi',
+    name: 'Aarav Mehta',
+    role: 'SDE-1 (Fresher Placed)',
+    company: 'Bengaluru Tech Park',
     rating: 5,
-    content: 'ApplyOne saved me weeks of manual form-filling during internship season. I got matched to 4 tech startups and landed a Software Engineer Intern role at Acme!',
-    avatar: 'RS',
+    content:
+      'Applying manually to 50+ portals every week was exhausting. ApplyOne automated my job hunt and within 3 weeks I received 4 interview invites and cracked my first full-time SDE job!',
+    avatar: 'AM',
   },
   {
     id: '2',
     name: 'Sneha Patel',
-    role: 'Recent Graduate',
-    company: 'Fresher',
-    rating: 4.5,
-    content: 'The expected package configuration is amazing. I selected multiple employment types and set distinct targets. Automated dispatch got me shortlisted for two remote roles in a week.',
+    role: 'Software Engineering Intern',
+    company: 'Fintech Startup, Pune',
+    rating: 5,
+    content:
+      'As a pre-final year B.Tech student, internship season was stressful. ApplyOne matched my resume to relevant tech openings and helped me secure a 6-month paid Software Engineering Internship.',
     avatar: 'SP',
   },
   {
     id: '3',
-    name: 'David Vance',
-    role: 'Junior Frontend Developer',
-    company: 'DevHQ',
+    name: 'Rohan Sharma',
+    role: 'Associate Data Analyst',
+    company: 'Gurugram',
     rating: 5,
-    content: "Honestly, the ATS resume score tip was a game changer. I updated my resume based on the guidelines, and the matches immediately improved. Got an offer yesterday!",
-    avatar: 'DV',
+    content:
+      'The ATS resume insights helped me fix missing keywords. ApplyOne automatically dispatched tailored applications on my behalf, leading directly to my first full-time corporate job offer.',
+    avatar: 'RS',
   },
   {
     id: '4',
     name: 'Ananya Iyer',
-    role: 'MBA Candidate',
-    company: 'FMS Delhi',
-    rating: 4,
-    content: 'Great platform for finding part-time consulting gigs alongside my classes. Clean layout, extremely fast, and the dashboard metrics update instantly.',
+    role: 'Frontend Development Intern',
+    company: 'Hyderabad',
+    rating: 4.5,
+    content:
+      'ApplyOne took the tedious form filling out of my daily routine. I set my tech preferences, and within 10 days I was interviewing for React frontend internships and got selected!',
     avatar: 'AI',
   },
   {
     id: '5',
-    name: 'Michael Chang',
-    role: 'Software Engineer',
-    company: 'Fintech Corp',
+    name: 'Karan Malhotra',
+    role: 'Graduate Trainee Engineer',
+    company: 'Noida',
     rating: 5,
-    content: "As a working professional, I did not have time to fill out portal pages after work. ApplyOne's automated application pipeline is smooth. Recommending to all my peers.",
-    avatar: 'MC',
+    content:
+      'Being from a tier-2 college, finding off-campus opportunities was tough. ApplyOne gave my profile visibility across 80+ top companies and helped me land my first full-time developer role.',
+    avatar: 'KM',
   },
   {
     id: '6',
     name: 'Priya Nair',
-    role: 'Data Analyst',
-    company: 'Fresher',
-    rating: 4.5,
-    content: 'I was skeptical about the resume matching, but after uploading, the matches for Analyst roles were spot-on. The disclaimer is honest, but the tech does the job.',
+    role: 'Product Management Intern',
+    company: 'Mumbai',
+    rating: 5,
+    content:
+      'I was looking for an APM internship before graduating. The automated dispatch matched me to early-stage product teams, and I landed my dream internship in less than a month.',
     avatar: 'PN',
   },
   {
     id: '7',
-    name: 'Liam Gallagher',
-    role: 'UI Designer',
-    company: 'Freelance',
-    rating: 4,
-    content: 'Solid UI. The dark theme is beautiful, and the onboarding wizard is incredibly intuitive. I love the interactive application tracking dashboard.',
-    avatar: 'LG',
+    name: 'Aditya Verma',
+    role: 'Junior Backend Developer',
+    company: 'Delhi NCR',
+    rating: 4.5,
+    content:
+      'ApplyOne is an absolute lifesaver for freshers. The dashboard clearly tracks every dispatch and status. It helped me secure multiple interview rounds and my first full-time job.',
+    avatar: 'AV',
   },
   {
     id: '8',
-    name: 'Karan Malhotra',
-    role: 'CS Student',
-    company: 'BITS Pilani',
+    name: 'Tanvi Deshmukh',
+    role: 'Cloud & DevOps Intern',
+    company: 'Remote Tech Labs',
     rating: 5,
-    content: 'Simple and incredibly fast. The Google login and resume wizard took less than 2 minutes. Already have 3 active interviews logged.',
-    avatar: 'KM',
+    content:
+      'Got matched and applied to 60+ curated cloud and DevOps roles effortlessly. Received two paid internship offers in just two weeks. Must-have for college students.',
+    avatar: 'TD',
   },
   {
     id: '9',
-    name: 'Sarah Jenkins',
-    role: 'Junior Product Manager',
-    company: 'AppScale',
-    rating: 4.5,
-    content: 'Excellent SaaS experience. It does exactly what it promises—reduces the overhead of job seeking so you can focus on interview preparation.',
-    avatar: 'SJ',
+    name: 'Ishaan Gupta',
+    role: 'Full Stack Developer (Fresher)',
+    company: 'Bengaluru',
+    rating: 5,
+    content:
+      'Saved me hours every day. The automated pipeline dispatched applications consistently in the background while I focused on LeetCode and DSA interview preparation.',
+    avatar: 'IG',
   },
 ];
 
@@ -108,22 +117,22 @@ export function Reviews() {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  // Use fractional itemsPerView to provide a partial next-card scroll hint
+  // Responsive fractional itemsPerView for next-card scroll hint
   const itemsPerView = windowWidth >= 1024 ? 3.2 : windowWidth >= 768 ? 2.2 : 1.15;
   const maxIndex = Math.max(0, Math.floor(reviews.length - Math.floor(itemsPerView)));
 
-  // Clamp current index when items per view resize
+  // Clamp current index when viewport resizes
   useEffect(() => {
     if (currentIndex > maxIndex) {
       setCurrentIndex(maxIndex);
     }
   }, [itemsPerView, currentIndex, maxIndex]);
 
-  // Auto-scroll loop every 6 seconds
+  // Left slide auto-transition every 5 seconds
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prev) => (prev >= maxIndex ? 0 : prev + 1));
-    }, 6000);
+    }, 5000);
     return () => clearInterval(interval);
   }, [currentIndex, maxIndex]);
 
@@ -135,18 +144,17 @@ export function Reviews() {
     setCurrentIndex((prev) => (prev >= maxIndex ? 0 : prev + 1));
   };
 
-  // Translation percentage based on total number of reviews
+  // Translation percentage sliding left
   const translateX = -currentIndex * (100 / reviews.length);
 
   return (
     <section className="py-20 bg-white dark:bg-bg-dark transition-colors duration-300 relative overflow-hidden">
-      
-      {/* Background decorations */}
+      {/* Background ambient glows */}
       <div className="absolute top-1/4 left-1/4 w-80 h-80 rounded-full bg-blue-500/5 dark:bg-blue-600/5 blur-3xl pointer-events-none" />
       <div className="absolute bottom-1/4 right-1/4 w-80 h-80 rounded-full bg-cyan-500/5 dark:bg-cyan-600/5 blur-3xl pointer-events-none" />
 
       <Container>
-        {/* Section Header with Closely Positioned Carousel Controls */}
+        {/* Section Header with Carousel Controls */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-6 text-left">
           <div className="space-y-4 max-w-2xl">
             <div className="inline-flex items-center justify-center rounded-full border border-blue-200 bg-blue-50 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-blue-700 dark:border-blue-900/60 dark:bg-blue-950/40 dark:text-blue-300">
@@ -159,11 +167,11 @@ export function Reviews() {
               </span>
             </h2>
             <p className="text-base sm:text-lg text-text-secondary-light dark:text-text-secondary-dark">
-              See what students, freshers, and professionals are saying about their ApplyOne automation campaigns.
+              Hear from students and freshers across India who landed internships and their first full-time jobs with ApplyOne.
             </p>
           </div>
 
-          {/* Carousel Arrows positioned close to the cards */}
+          {/* Carousel Arrows */}
           <div className="flex items-center gap-2 self-start md:self-end">
             <button
               onClick={handlePrev}
@@ -186,12 +194,17 @@ export function Reviews() {
           </div>
         </div>
 
-        {/* Carousel Viewport with Partial Next-Card Scroll Hint */}
+        {/* Carousel Viewport with Smooth Left Slide Transition */}
         <div className="overflow-hidden w-full py-4 -mx-2 sm:-mx-3 px-2 sm:px-3">
           <motion.div
             className="flex"
             animate={{ x: `${translateX}%` }}
-            transition={{ type: 'spring', stiffness: 120, damping: 20 }}
+            transition={{
+              type: 'spring',
+              stiffness: 90,
+              damping: 18,
+              mass: 0.8,
+            }}
             style={{
               width: `${(reviews.length / itemsPerView) * 100}%`,
             }}
@@ -282,6 +295,20 @@ export function Reviews() {
               </div>
             ))}
           </motion.div>
+        </div>
+
+        {/* Carousel indicator dots */}
+        <div className="flex justify-center items-center gap-2 mt-4">
+          {Array.from({ length: maxIndex + 1 }).map((_, idx) => (
+            <button
+              key={idx}
+              onClick={() => setCurrentIndex(idx)}
+              className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
+                currentIndex === idx ? 'w-6 bg-blue-600 dark:bg-cyan-400' : 'w-2 bg-slate-200 dark:bg-slate-700'
+              }`}
+              aria-label={`Go to slide ${idx + 1}`}
+            />
+          ))}
         </div>
       </Container>
     </section>
