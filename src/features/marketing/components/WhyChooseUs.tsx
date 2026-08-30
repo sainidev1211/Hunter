@@ -28,7 +28,7 @@ export function WhyChooseUs() {
   ];
 
   return (
-    <section className="py-20 bg-bg-alt-light dark:bg-bg-alt-dark transition-colors duration-300 relative overflow-hidden">
+    <section className="py-20 bg-bg-alt-light transition-colors duration-300 relative overflow-hidden">
       
       {/* Background decorations */}
       <div className="absolute top-0 right-0 w-96 h-96 rounded-full bg-blue-500/5 blur-3xl pointer-events-none" />
@@ -37,16 +37,16 @@ export function WhyChooseUs() {
       <Container>
         {/* Centered Section Heading across full layout */}
         <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
-          <div className="inline-flex items-center justify-center rounded-full border border-blue-200 bg-blue-50 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-blue-700 dark:border-blue-900/60 dark:bg-blue-950/40 dark:text-blue-300">
+          <div className="inline-flex items-center justify-center rounded-full border border-blue-200 bg-blue-50 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-blue-700">
             Value Proposition
           </div>
-          <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-text-primary-light dark:text-text-primary-dark">
+          <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-text-primary-light">
             Why{' '}
             <span className="bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent">
               Choose Us?
             </span>
           </h2>
-          <p className="text-base sm:text-lg text-text-secondary-light dark:text-text-secondary-dark max-w-2xl mx-auto">
+          <p className="text-base sm:text-lg text-text-secondary-light max-w-2xl mx-auto">
             ApplyOne is not just another job portal. We are an advanced campaign automation pipeline built to accelerate your career placement at an unbeatable value.
           </p>
         </div>
@@ -63,8 +63,8 @@ export function WhyChooseUs() {
               transition={{ duration: 0.5 }}
               className="h-full flex flex-col"
             >
-              <Card className="h-full p-6 sm:p-8 rounded-2xl border border-border-light dark:border-border-dark bg-white dark:bg-card-dark shadow-xl flex flex-col justify-between space-y-6 text-left relative overflow-hidden">
-                <div className="absolute top-0 right-0 bg-blue-500/10 text-primary dark:text-blue-400 text-xs font-bold px-3 py-1 rounded-bl-lg">
+              <Card className="h-full p-6 sm:p-8 rounded-2xl border border-border-light bg-white shadow-xl flex flex-col justify-between space-y-6 text-left relative overflow-hidden">
+                <div className="absolute top-0 right-0 bg-blue-500/10 text-primary text-xs font-bold px-3 py-1 rounded-bl-lg">
                   Performance Metrics
                 </div>
 
@@ -76,7 +76,7 @@ export function WhyChooseUs() {
                         cx="50"
                         cy="50"
                         r="40"
-                        className="stroke-slate-100 dark:stroke-slate-800"
+                        className="stroke-slate-100"
                         strokeWidth="10"
                         fill="none"
                       />
@@ -95,27 +95,27 @@ export function WhyChooseUs() {
                         strokeLinecap="round"
                       />
                     </svg>
-                    <span className="text-lg font-extrabold text-text-primary-light dark:text-text-primary-dark">
+                    <span className="text-lg font-extrabold text-text-primary-light">
                       92%
                     </span>
                   </div>
                   <div>
-                    <h3 className="font-bold text-sm sm:text-base text-text-primary-light dark:text-text-primary-dark">
+                    <h3 className="font-bold text-sm sm:text-base text-text-primary-light">
                       ATS Compatibility Pass Rate
                     </h3>
-                    <p className="text-xs sm:text-sm text-text-secondary-light dark:text-text-secondary-dark mt-1 leading-relaxed">
+                    <p className="text-xs sm:text-sm text-text-secondary-light mt-1 leading-relaxed">
                       Our parsing schema outperforms industry standards, clearing ATS auto-filters with ease.
                     </p>
                   </div>
                 </div>
 
                 {/* Velocity Indicator */}
-                <div className="p-4 bg-slate-50 dark:bg-bg-dark rounded-xl border border-border-light dark:border-border-dark flex items-center justify-between">
+                <div className="p-4 bg-slate-50 rounded-xl border border-border-light flex items-center justify-between">
                   <div>
                     <span className="block text-2xl font-black bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent">
                       10x Faster
                     </span>
-                    <span className="text-xs text-text-secondary-light dark:text-text-secondary-dark">
+                    <span className="text-xs text-text-secondary-light">
                       Average placement match velocity
                     </span>
                   </div>
@@ -124,16 +124,16 @@ export function WhyChooseUs() {
 
                 {/* Dispatch Simulator Track */}
                 <div className="space-y-2.5">
-                  <span className="text-xs font-bold text-text-secondary-light dark:text-text-secondary-dark uppercase tracking-wider block">
+                  <span className="text-xs font-bold text-text-secondary-light uppercase tracking-wider block">
                     Automation Pipeline Stream
                   </span>
                   
                   <div className="space-y-2 text-xs">
-                    <div className="flex items-center gap-2 text-emerald-600 dark:text-emerald-400 font-semibold">
+                    <div className="flex items-center gap-2 text-emerald-600 font-semibold">
                       <span>✓</span>
                       <span>Resume Parsed & ATS Formatted</span>
                     </div>
-                    <div className="flex items-center gap-2 text-emerald-600 dark:text-emerald-400 font-semibold">
+                    <div className="flex items-center gap-2 text-emerald-600 font-semibold">
                       <span>✓</span>
                       <span>Salary Goals Split & Match Secured</span>
                     </div>
@@ -159,17 +159,17 @@ export function WhyChooseUs() {
                   transition={{ duration: 0.4, delay: index * 0.08 }}
                   className="h-full"
                 >
-                  <Card className="h-full p-5 rounded-2xl border border-border-light dark:border-border-dark bg-white dark:bg-card-dark shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between text-left">
+                  <Card className="h-full p-5 rounded-2xl border border-border-light bg-white shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between text-left">
                     <div className="space-y-3">
                       <div className="flex items-center gap-3">
-                        <span className="text-xl h-9 w-9 rounded-lg bg-blue-50 dark:bg-blue-950/40 border border-border-light dark:border-border-dark flex items-center justify-center flex-shrink-0">
+                        <span className="text-xl h-9 w-9 rounded-lg bg-blue-50 border border-border-light flex items-center justify-center flex-shrink-0">
                           {benefit.icon}
                         </span>
-                        <h3 className="font-bold text-text-primary-light dark:text-text-primary-dark text-sm sm:text-base min-h-[2.5rem] flex items-center leading-snug">
+                        <h3 className="font-bold text-text-primary-light text-sm sm:text-base min-h-[2.5rem] flex items-center leading-snug">
                           {benefit.title}
                         </h3>
                       </div>
-                      <p className="text-xs sm:text-sm text-text-secondary-light dark:text-text-secondary-dark leading-relaxed">
+                      <p className="text-xs sm:text-sm text-text-secondary-light leading-relaxed">
                         {benefit.description}
                       </p>
                     </div>

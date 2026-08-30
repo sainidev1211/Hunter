@@ -12,20 +12,20 @@ export function Resources() {
   );
 
   return (
-    <section id="resources" className="py-20 bg-white dark:bg-bg-dark transition-colors duration-300">
+    <section id="resources" className="py-20 bg-white transition-colors duration-300">
       <Container>
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
-          <div className="inline-flex items-center justify-center rounded-full border border-blue-200 bg-blue-50 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-blue-700 dark:border-blue-900/60 dark:bg-blue-950/40 dark:text-blue-300">
+          <div className="inline-flex items-center justify-center rounded-full border border-blue-200 bg-blue-50 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-blue-700">
             Resources & Guides
           </div>
-          <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-text-primary-light dark:text-text-primary-dark">
+          <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-text-primary-light">
             Learning &{' '}
             <span className="bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent">
               Growth Hub
             </span>
           </h2>
-          <p className="text-base sm:text-lg text-text-secondary-light dark:text-text-secondary-dark">
+          <p className="text-base sm:text-lg text-text-secondary-light">
             Expert resources, roadmap updates, and operational strategies to maximize interview conversion rates.
           </p>
         </div>
@@ -45,20 +45,20 @@ export function Resources() {
                 transition={{ duration: 0.45, delay: idx * 0.08 }}
                 className="flex"
               >
-                <Card hoverable className="w-full flex flex-col justify-between text-left rounded-2xl border border-border-light dark:border-border-dark bg-white dark:bg-card-dark">
+                <Card hoverable className="w-full flex flex-col justify-between text-left rounded-2xl border border-border-light bg-white">
                   <CardContent className="p-6 space-y-4 flex-1">
                     <div className="flex justify-between items-center">
                       <Badge variant="primary">{res.category}</Badge>
-                      <span className="text-xs text-text-secondary-light dark:text-text-secondary-dark font-medium">
+                      <span className="text-xs text-text-secondary-light font-medium">
                         {res.readTime}
                       </span>
                     </div>
 
                     <div className="space-y-2">
-                      <h3 className="text-lg sm:text-xl font-bold text-text-primary-light dark:text-text-primary-dark hover:text-primary transition-colors">
+                      <h3 className="text-lg sm:text-xl font-bold text-text-primary-light hover:text-primary transition-colors">
                         {res.title}
                       </h3>
-                      <p className="text-sm text-text-secondary-light dark:text-text-secondary-dark leading-relaxed">
+                      <p className="text-sm text-text-secondary-light leading-relaxed">
                         {res.description}
                       </p>
                     </div>

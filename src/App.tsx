@@ -63,15 +63,15 @@ export function App() {
   }, [user, signOut]);
 
   return (
-    <ThemeProvider defaultTheme="system">
-      <BrowserRouter>
+    <BrowserRouter>
+      <ThemeProvider defaultTheme="light">
         <div className="min-h-screen bg-bg-light dark:bg-bg-dark text-text-primary-light dark:text-text-primary-dark transition-colors duration-300">
           <AppRoutes />
           <Toaster />
           <AIChatbox />
         </div>
-      </BrowserRouter>
-    </ThemeProvider>
+      </ThemeProvider>
+    </BrowserRouter>
   );
 }
 

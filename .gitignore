@@ -31,3 +31,8 @@ backend/.env
 uploads/
 backend/uploads/*
 !backend/uploads/.gitkeep
+
+# Database dumps / Redis
+*.rdb
+dump.rdb
+

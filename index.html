@@ -94,6 +94,21 @@
       name="theme-color"
       content="#ffffff"
     />
+    <meta
+      name="color-scheme"
+      content="light"
+    />
+
+    <script>
+      (function() {
+        var path = window.location.pathname;
+        if (path === '/' || path === '/privacy' || path === '/terms') {
+          document.documentElement.classList.remove('dark');
+          document.documentElement.classList.add('light');
+          document.documentElement.style.colorScheme = 'light';
+        }
+      })();
+    </script>
   </head>
 
   <body>

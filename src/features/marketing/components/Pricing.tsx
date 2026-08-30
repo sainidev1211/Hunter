@@ -107,20 +107,20 @@ export function Pricing() {
   }, [plans]);
 
   return (
-    <section id="pricing" className="py-20 bg-gradient-to-b from-slate-50 via-white to-slate-100 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 transition-colors duration-300">
+    <section id="pricing" className="py-20 bg-gradient-to-b from-slate-50 via-white to-slate-100 transition-colors duration-300">
       <Container>
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
-          <div className="inline-flex items-center justify-center rounded-full border border-blue-200 bg-blue-50 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-blue-700 dark:border-blue-900/60 dark:bg-blue-950/40 dark:text-blue-300">
+          <div className="inline-flex items-center justify-center rounded-full border border-blue-200 bg-blue-50 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-blue-700">
             Flexible Pricing
           </div>
-          <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-text-primary-light dark:text-text-primary-dark">
+          <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-text-primary-light">
             Simple, Transparent{' '}
             <span className="bg-gradient-to-r from-blue-600 via-indigo-600 to-cyan-600 bg-clip-text text-transparent">
               Pricing
             </span>
           </h2>
-          <p className="text-base sm:text-lg text-text-secondary-light dark:text-text-secondary-dark">
+          <p className="text-base sm:text-lg text-text-secondary-light">
             Choose the membership tier that fits your job search pace. Upgrade anytime and unlock high-velocity application workflows.
           </p>
         </div>
@@ -139,8 +139,8 @@ export function Pricing() {
               <Card
                 className={`relative flex flex-col justify-between w-full h-full text-left p-6 md:p-8 rounded-2xl overflow-visible transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl ${
                   plan.isPopular
-                    ? 'border-2 border-cyan-500 bg-gradient-to-b from-white via-blue-50/60 to-cyan-50/70 shadow-xl scale-[1.02] z-10 dark:from-slate-900 dark:via-slate-900 dark:to-cyan-950/40'
-                    : 'border border-slate-200 bg-white/90 shadow-lg shadow-slate-200/50 dark:border-slate-700 dark:bg-slate-900/80 dark:shadow-none'
+                    ? 'border-2 border-cyan-500 bg-gradient-to-b from-white via-blue-50/60 to-cyan-50/70 shadow-xl scale-[1.02] z-10'
+                    : 'border border-slate-200 bg-white/90 shadow-lg shadow-slate-200/50'
                 }`}
               >
                 {/* Popular Indicator */}
@@ -156,21 +156,21 @@ export function Pricing() {
                   {/* Header Details */}
                   <div>
                     <div className="flex items-center justify-between gap-3 mb-2">
-                      <h3 className="text-xl font-bold text-text-primary-light dark:text-text-primary-dark">
+                      <h3 className="text-xl font-bold text-text-primary-light">
                         {plan.name}
                       </h3>
                     </div>
-                    <p className="text-sm text-text-secondary-light dark:text-text-secondary-dark min-h-[42px] leading-relaxed">
+                    <p className="text-sm text-text-secondary-light min-h-[42px] leading-relaxed">
                       {plan.description || 'Choose the plan that best fits your job search goals.'}
                     </p>
                   </div>
 
                   {/* Price Block */}
                   <div className="flex items-baseline gap-1.5 py-2">
-                    <span className="text-4xl sm:text-5xl font-extrabold tracking-tight text-text-primary-light dark:text-text-primary-dark">
+                    <span className="text-4xl sm:text-5xl font-extrabold tracking-tight text-text-primary-light">
                       ₹{plan.monthlyPrice || 0}
                     </span>
-                    <span className="text-sm font-medium text-text-secondary-light dark:text-text-secondary-dark">
+                    <span className="text-sm font-medium text-text-secondary-light">
                       /month
                     </span>
                   </div>
@@ -180,10 +180,10 @@ export function Pricing() {
                     <ul className="space-y-3.5">
                       {plan.normalizedFeatures.map((feat: string, featureIdx: number) => (
                         <li key={`${plan.id}-feature-${featureIdx}`} className="flex items-start text-sm group">
-                          <span className="mt-0.5 mr-3 inline-flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-emerald-100 text-emerald-600 dark:bg-emerald-900/40 dark:text-emerald-300 text-xs font-bold">
+                          <span className="mt-0.5 mr-3 inline-flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-emerald-100 text-emerald-600 text-xs font-bold">
                             ✓
                           </span>
-                          <span className="text-text-secondary-light dark:text-text-secondary-dark leading-relaxed group-hover:text-slate-800 dark:group-hover:text-slate-200 transition-colors">
+                          <span className="text-text-secondary-light leading-relaxed group-hover:text-slate-800 transition-colors">
                             {feat}
                           </span>
                         </li>

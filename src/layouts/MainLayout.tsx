@@ -5,7 +5,7 @@ import { Footer } from '@/components/shared/Footer';
 
 export function MainLayout() {
   return (
-    <div className="flex flex-col min-h-screen bg-bg-light dark:bg-bg-dark transition-colors duration-300 text-text-primary-light dark:text-text-primary-dark">
+    <div className="flex flex-col min-h-screen bg-bg-light text-text-primary-light transition-colors duration-300 light">
       <Navbar />
       <main className="flex-grow">
         <Outlet />

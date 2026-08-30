@@ -83,7 +83,7 @@ export function Navbar() {
   };
 
   return (
-    <nav className="sticky top-0 z-40 w-full border-b border-border-light dark:border-border-dark bg-white/80 dark:bg-bg-dark/80 backdrop-blur-md transition-colors duration-300">
+    <nav className="sticky top-0 z-40 w-full border-b border-border-light bg-white/80 backdrop-blur-md transition-colors duration-300">
       <Container className="flex h-16 items-center justify-between">
         {/* Logo */}
         <Link to={ROUTES.HOME} className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-lg">
@@ -96,7 +96,7 @@ export function Navbar() {
             <a
               key={link.label}
               href={link.href}
-              className="text-sm font-medium text-text-secondary-light dark:text-text-secondary-dark hover:text-primary dark:hover:text-white transition-colors"
+              className="text-sm font-medium text-text-secondary-light hover:text-primary transition-colors"
             >
               {link.label}
             </a>
@@ -105,9 +105,6 @@ export function Navbar() {
 
         {/* Action Panel */}
         <div className="hidden md:flex items-center space-x-4">
-          
-          
-
           {user ? (
             <div className="flex items-center space-x-3.5">
               {/* Dashboard Button */}
@@ -121,12 +118,12 @@ export function Navbar() {
               <div className="relative" ref={notificationsRef}>
                 <button
                   onClick={() => setNotificationsOpen(!notificationsOpen)}
-                  className="p-2 rounded-lg border border-border-light dark:border-border-dark text-text-secondary-light dark:text-text-secondary-dark cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors relative"
+                  className="p-2 rounded-lg border border-border-light text-text-secondary-light cursor-pointer hover:bg-slate-50 transition-colors relative"
                   aria-label="Toggle notifications menu"
                 >
                   🔔
                   {unreadCount > 0 && (
-                    <span className="absolute top-1.5 right-1.5 h-2 w-2 rounded-full bg-red-500 ring-2 ring-white dark:ring-card-dark animate-pulse" />
+                    <span className="absolute top-1.5 right-1.5 h-2 w-2 rounded-full bg-red-500 ring-2 ring-white animate-pulse" />
                   )}
                 </button>
 
@@ -137,10 +134,10 @@ export function Navbar() {
                       animate={{ opacity: 1, y: 0, scale: 1 }}
                       exit={{ opacity: 0, y: 10, scale: 0.95 }}
                       transition={{ duration: 0.15 }}
-                      className="absolute right-0 mt-2 w-80 bg-white dark:bg-card-dark border border-border-light dark:border-border-dark rounded-xl shadow-xl z-50 overflow-hidden"
+                      className="absolute right-0 mt-2 w-80 bg-white border border-border-light rounded-xl shadow-xl z-50 overflow-hidden"
                     >
-                      <div className="p-4 border-b border-border-light dark:border-border-dark flex items-center justify-between">
-                        <span className="font-bold text-sm text-text-primary-light dark:text-text-primary-dark">Notifications</span>
+                      <div className="p-4 border-b border-border-light flex items-center justify-between">
+                        <span className="font-bold text-sm text-text-primary-light">Notifications</span>
                         {unreadCount > 0 && (
                           <button
                             onClick={handleMarkAllRead}
@@ -150,21 +147,21 @@ export function Navbar() {
                           </button>
                         )}
                       </div>
-                      <div className="max-h-64 overflow-y-auto divide-y divide-border-light dark:divide-border-dark/60">
+                      <div className="max-h-64 overflow-y-auto divide-y divide-border-light">
                         {mockNotifications.map((notif) => (
                           <div
                             key={notif.id}
-                            className={`p-3.5 text-left text-xs transition-colors hover:bg-bg-alt-light dark:hover:bg-bg-alt-dark ${
-                              notif.unread ? 'bg-blue-50/20 dark:bg-blue-950/10' : ''
+                            className={`p-3.5 text-left text-xs transition-colors hover:bg-bg-alt-light ${
+                              notif.unread ? 'bg-blue-50/20' : ''
                             }`}
                           >
                             <div className="flex items-start justify-between gap-2">
-                              <span className={`font-semibold ${notif.unread ? 'text-text-primary-light dark:text-text-primary-dark' : 'text-text-secondary-light dark:text-text-secondary-dark'}`}>
+                              <span className={`font-semibold ${notif.unread ? 'text-text-primary-light' : 'text-text-secondary-light'}`}>
                                 {notif.title}
                               </span>
                               <span className="text-xs text-slate-400 whitespace-nowrap">{notif.time}</span>
                             </div>
-                            <p className="text-text-secondary-light dark:text-text-secondary-dark mt-1 leading-relaxed">
+                            <p className="text-text-secondary-light mt-1 leading-relaxed">
                               {notif.description}
                             </p>
                           </div>
@@ -183,7 +180,7 @@ export function Navbar() {
                   aria-haspopup="true"
                   aria-expanded={dropdownOpen}
                 >
-                  <div className="h-9 w-9 rounded-full bg-gradient-to-tr from-blue-500 to-cyan-500 flex items-center justify-center text-white text-sm font-semibold shadow-sm border border-white dark:border-slate-800">
+                  <div className="h-9 w-9 rounded-full bg-gradient-to-tr from-blue-500 to-cyan-500 flex items-center justify-center text-white text-sm font-semibold shadow-sm border border-white">
                     {profile?.full_name ? getInitials(profile.full_name) : 'U'}
                   </div>
                 </button>
@@ -194,33 +191,33 @@ export function Navbar() {
                       initial={{ opacity: 0, scale: 0.95, y: 10 }}
                       animate={{ opacity: 1, scale: 1, y: 0 }}
                       exit={{ opacity: 0, scale: 0.95, y: 10 }}
-                      className="absolute right-0 mt-2 w-56 rounded-xl border border-border-light dark:border-border-dark bg-white dark:bg-card-dark shadow-lg py-2 z-50"
+                      className="absolute right-0 mt-2 w-56 rounded-xl border border-border-light bg-white shadow-lg py-2 z-50"
                     >
-                      <div className="px-4 py-2 border-b border-border-light dark:border-border-dark">
-                        <p className="text-sm font-semibold text-text-primary-light dark:text-text-primary-dark">
+                      <div className="px-4 py-2 border-b border-border-light">
+                        <p className="text-sm font-semibold text-text-primary-light">
                           {profile?.full_name || 'My Profile'}
                         </p>
-                        <p className="text-xs text-text-secondary-light dark:text-text-secondary-dark truncate">
+                        <p className="text-xs text-text-secondary-light truncate">
                           {user.email}
                         </p>
                       </div>
                       <Link
                         to={ROUTES.DASHBOARD}
                         onClick={() => setDropdownOpen(false)}
-                        className="block w-full px-4 py-2 text-left text-sm text-text-primary-light dark:text-text-primary-dark hover:bg-bg-alt-light dark:hover:bg-bg-alt-dark"
+                        className="block w-full px-4 py-2 text-left text-sm text-text-primary-light hover:bg-bg-alt-light"
                       >
                         Dashboard
                       </Link>
                       <Link
                         to={ROUTES.SUBSCRIPTIONS}
                         onClick={() => setDropdownOpen(false)}
-                        className="block w-full px-4 py-2 text-left text-sm text-text-primary-light dark:text-text-primary-dark hover:bg-bg-alt-light dark:hover:bg-bg-alt-dark"
+                        className="block w-full px-4 py-2 text-left text-sm text-text-primary-light hover:bg-bg-alt-light"
                       >
                         Subscriptions
                       </Link>
                       <button
                         onClick={handleLogout}
-                        className="block w-full px-4 py-2 text-left text-sm text-red-600 hover:bg-red-50 dark:hover:bg-red-950/20 cursor-pointer"
+                        className="block w-full px-4 py-2 text-left text-sm text-red-600 hover:bg-red-50 cursor-pointer"
                       >
                         Sign out
                       </button>
@@ -246,26 +243,10 @@ export function Navbar() {
         </div>
 
         {/* Mobile Menu Button */}
-        <div className="md:hidden flex items-center space-x-3">
-          <button
-            onClick={() => setTheme(isDark ? 'light' : 'dark')}
-            className="p-2 rounded-lg border border-border-light dark:border-border-dark text-text-secondary-light dark:text-text-secondary-dark cursor-pointer"
-            aria-label="Toggle theme"
-          >
-            {isDark ? (
-              <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m12.728 0l-.707-.707M6.343 6.343l-.707-.707M12 8a4 4 0 100 8 4 4 0 000-8z" />
-              </svg>
-            ) : (
-              <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
-              </svg>
-            )}
-          </button>
-          
+        <div className="md:hidden flex items-center">
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="p-2 rounded-lg border border-border-light dark:border-border-dark text-text-primary-light dark:text-text-primary-dark cursor-pointer"
+            className="p-2 rounded-lg border border-border-light text-text-primary-light cursor-pointer hover:bg-slate-50 transition-colors"
             aria-label="Open navigation menu"
           >
             {mobileMenuOpen ? (
@@ -288,7 +269,7 @@ export function Navbar() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden border-t border-border-light dark:border-border-dark bg-white dark:bg-bg-dark overflow-hidden"
+            className="md:hidden border-t border-border-light bg-white overflow-hidden"
           >
             <div className="px-4 py-4 space-y-4">
               {NAVIGATION_LINKS.marketing.map((link) => (
@@ -296,12 +277,12 @@ export function Navbar() {
                   key={link.label}
                   href={link.href}
                   onClick={() => setMobileMenuOpen(false)}
-                  className="block text-base font-medium text-text-primary-light dark:text-text-primary-dark py-2"
+                  className="block text-base font-medium text-text-primary-light py-2"
                 >
                   {link.label}
                 </a>
               ))}
-              <hr className="border-border-light dark:border-border-dark" />
+              <hr className="border-border-light" />
               {user ? (
                 <div className="space-y-3">
                   <div className="flex items-center space-x-3 py-2">
@@ -309,10 +290,10 @@ export function Navbar() {
                       {profile?.full_name ? getInitials(profile.full_name) : 'U'}
                     </div>
                     <div>
-                      <p className="text-sm font-semibold text-text-primary-light dark:text-text-primary-dark">
+                      <p className="text-sm font-semibold text-text-primary-light">
                         {profile?.full_name || 'My Profile'}
                       </p>
-                      <p className="text-xs text-text-secondary-light dark:text-text-secondary-dark truncate">
+                      <p className="text-xs text-text-secondary-light truncate">
                         {user.email}
                       </p>
                     </div>

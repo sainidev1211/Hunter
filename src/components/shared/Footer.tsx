@@ -8,7 +8,7 @@ export function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="border-t border-border-light dark:border-border-dark bg-bg-alt-light dark:bg-bg-alt-dark transition-colors duration-300">
+    <footer className="border-t border-border-light bg-bg-alt-light transition-colors duration-300">
       <Container className="py-12 md:py-16">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-12">
           {/* Logo & Description */}
@@ -16,14 +16,14 @@ export function Footer() {
             <Link to={ROUTES.HOME} className="block">
               <Logo showTagline={true} />
             </Link>
-            <p className="text-sm text-text-secondary-light dark:text-text-secondary-dark leading-relaxed mt-3">
+            <p className="text-sm text-text-secondary-light leading-relaxed mt-3">
               Simplify your job application campaign. Apply once, access verified opportunities everywhere, and get matched to jobs matching your profile.
             </p>
           </div>
 
           {/* Product Links */}
           <div className="text-left">
-            <h3 className="text-sm font-semibold text-text-primary-light dark:text-text-primary-dark tracking-wider uppercase mb-4">
+            <h3 className="text-sm font-semibold text-text-primary-light tracking-wider uppercase mb-4">
               Product
             </h3>
             <ul className="space-y-2">
@@ -31,7 +31,7 @@ export function Footer() {
                 <li key={link.label}>
                   <a
                     href={link.href}
-                    className="text-sm text-text-secondary-light dark:text-text-secondary-dark hover:text-primary dark:hover:text-white transition-colors"
+                    className="text-sm text-text-secondary-light hover:text-primary transition-colors"
                   >
                     {link.label}
                   </a>
@@ -42,7 +42,7 @@ export function Footer() {
 
           {/* Company Links */}
           <div className="text-left">
-            <h3 className="text-sm font-semibold text-text-primary-light dark:text-text-primary-dark tracking-wider uppercase mb-4">
+            <h3 className="text-sm font-semibold text-text-primary-light tracking-wider uppercase mb-4">
               Company
             </h3>
             <ul className="space-y-2">
@@ -51,14 +51,14 @@ export function Footer() {
                   {link.href.startsWith('/') ? (
                     <Link
                       to={link.href}
-                      className="text-sm text-text-secondary-light dark:text-text-secondary-dark hover:text-primary dark:hover:text-white transition-colors"
+                      className="text-sm text-text-secondary-light hover:text-primary transition-colors"
                     >
                       {link.label}
                     </Link>
                   ) : (
                     <a
                       href={link.href}
-                      className="text-sm text-text-secondary-light dark:text-text-secondary-dark hover:text-primary dark:hover:text-white transition-colors"
+                      className="text-sm text-text-secondary-light hover:text-primary transition-colors"
                     >
                       {link.label}
                     </a>
@@ -70,7 +70,7 @@ export function Footer() {
 
           {/* Support / Contact Links */}
           <div className="text-left">
-            <h3 className="text-sm font-semibold text-text-primary-light dark:text-text-primary-dark tracking-wider uppercase mb-4">
+            <h3 className="text-sm font-semibold text-text-primary-light tracking-wider uppercase mb-4">
               Contact & Support
             </h3>
             <ul className="space-y-2">
@@ -78,7 +78,7 @@ export function Footer() {
                 <li key={link.label}>
                   <a
                     href={link.href}
-                    className="text-sm text-text-secondary-light dark:text-text-secondary-dark hover:text-primary dark:hover:text-white transition-colors"
+                    className="text-sm text-text-secondary-light hover:text-primary transition-colors"
                   >
                     {link.label}
                   </a>
@@ -89,15 +89,15 @@ export function Footer() {
         </div>
 
         {/* Lower Banner */}
-        <div className="mt-12 pt-8 border-t border-border-light dark:border-border-dark flex flex-col md:flex-row items-center justify-between text-left gap-4">
-          <p className="text-xs text-text-secondary-light dark:text-text-secondary-dark">
+        <div className="mt-12 pt-8 border-t border-border-light flex flex-col md:flex-row items-center justify-between text-left gap-4">
+          <p className="text-xs text-text-secondary-light">
             &copy; {currentYear} {APP_METADATA.name} Inc. All rights reserved. Designed for active job candidates.
           </p>
           <div className="flex space-x-6">
-            <Link to={ROUTES.PRIVACY} className="text-xs text-text-secondary-light dark:text-text-secondary-dark hover:text-primary">
+            <Link to={ROUTES.PRIVACY} className="text-xs text-text-secondary-light hover:text-primary">
               Privacy Policy
             </Link>
-            <Link to={ROUTES.TERMS} className="text-xs text-text-secondary-light dark:text-text-secondary-dark hover:text-primary">
+            <Link to={ROUTES.TERMS} className="text-xs text-text-secondary-light hover:text-primary">
               Terms of Service
             </Link>
           </div>

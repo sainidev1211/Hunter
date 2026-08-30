@@ -39,31 +39,31 @@ export function FAQ() {
   };
 
   return (
-    <section id="faqs" className="py-20 bg-slate-50 dark:bg-bg-dark transition-colors duration-300">
+    <section id="faqs" className="py-20 bg-slate-50 transition-colors duration-300">
       <Container>
         <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
-          <div className="inline-flex items-center justify-center rounded-full border border-blue-200 bg-blue-50 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-blue-700 dark:border-blue-900/60 dark:bg-blue-950/40 dark:text-blue-300">
+          <div className="inline-flex items-center justify-center rounded-full border border-blue-200 bg-blue-50 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-blue-700">
             Support &amp; Answers
           </div>
-          <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-text-primary-light dark:text-text-primary-dark">
+          <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-text-primary-light">
             Frequently Asked{' '}
             <span className="bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent">
               Questions
             </span>
           </h2>
-          <p className="text-base sm:text-lg text-text-secondary-light dark:text-text-secondary-dark">
+          <p className="text-base sm:text-lg text-text-secondary-light">
             Everything you need to know about how we streamline your career growth.
           </p>
         </div>
 
         <div className="max-w-3xl mx-auto space-y-4">
           {faqs.map((faq, index) => (
-            <Card key={index} className="overflow-hidden border border-border-light dark:border-border-dark">
+            <Card key={index} className="overflow-hidden border border-border-light bg-white">
               <button
                 onClick={() => toggleFaq(index)}
-                className="w-full px-6 py-4 flex items-center justify-between focus:outline-none focus:bg-slate-100 dark:focus:bg-card-dark transition-colors text-left"
+                className="w-full px-6 py-4 flex items-center justify-between focus:outline-none focus:bg-slate-100 hover:bg-slate-50 transition-colors text-left"
               >
-                <span className="font-semibold text-lg text-text-primary-light dark:text-text-primary-dark">
+                <span className="font-semibold text-lg text-text-primary-light">
                   {faq.question}
                 </span>
                 <span className="ml-6 flex-shrink-0 text-primary">
@@ -87,7 +87,7 @@ export function FAQ() {
                     exit={{ height: 0, opacity: 0 }}
                     transition={{ duration: 0.3 }}
                   >
-                    <div className="px-6 pb-4 text-text-secondary-light dark:text-text-secondary-dark">
+                    <div className="px-6 pb-4 text-text-secondary-light leading-relaxed">
                       {faq.answer}
                     </div>
                   </motion.div>

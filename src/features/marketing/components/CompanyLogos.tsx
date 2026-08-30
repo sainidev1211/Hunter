@@ -20,7 +20,7 @@ export function CompanyLogos() {
             fontSize="105"
             fontWeight="900"
             letterSpacing="-6px"
-            className="fill-slate-900 dark:fill-white transition-colors duration-300"
+            className="fill-slate-900 transition-colors duration-300"
           >
             amazon
           </text>
@@ -49,7 +49,7 @@ export function CompanyLogos() {
             fontSize="18"
             fontWeight="bold"
             letterSpacing="0.3px"
-            className="fill-[#0A2240] dark:fill-slate-100 transition-colors duration-300"
+            className="fill-[#0A2240] transition-colors duration-300"
           >
             Goldman Sachs
           </text>
@@ -69,7 +69,7 @@ export function CompanyLogos() {
             fontSize="17"
             fontWeight="bold"
             letterSpacing="-0.5px"
-            className="fill-slate-900 dark:fill-white transition-colors duration-300"
+            className="fill-slate-900 transition-colors duration-300"
           >
             Adobe
           </text>
@@ -89,7 +89,7 @@ export function CompanyLogos() {
             fontWeight="bold"
             fontStyle="italic"
             letterSpacing="0.2px"
-            className="fill-[#002D62] dark:fill-slate-100 transition-colors duration-300"
+            className="fill-[#002D62] transition-colors duration-300"
           >
             McKinsey & Co.
           </text>
@@ -99,10 +99,10 @@ export function CompanyLogos() {
   ];
 
   return (
-    <section className="py-16 border-y border-border-light dark:border-border-dark bg-slate-50 dark:bg-slate-900/40 transition-colors duration-300">
+    <section className="py-16 border-y border-border-light bg-slate-50 transition-colors duration-300">
       <Container>
         <div className="flex flex-col space-y-8">
-          <span className="text-xs sm:text-sm font-semibold text-text-secondary-light dark:text-text-secondary-dark tracking-wider text-center uppercase">
+          <span className="text-xs sm:text-sm font-semibold text-text-secondary-light tracking-wider text-center uppercase">
             Securing interview match queues at global market leaders
           </span>
           

@@ -148,25 +148,25 @@ export function Reviews() {
   const translateX = -currentIndex * (100 / reviews.length);
 
   return (
-    <section className="py-20 bg-white dark:bg-bg-dark transition-colors duration-300 relative overflow-hidden">
+    <section className="py-20 bg-white transition-colors duration-300 relative overflow-hidden">
       {/* Background ambient glows */}
-      <div className="absolute top-1/4 left-1/4 w-80 h-80 rounded-full bg-blue-500/5 dark:bg-blue-600/5 blur-3xl pointer-events-none" />
-      <div className="absolute bottom-1/4 right-1/4 w-80 h-80 rounded-full bg-cyan-500/5 dark:bg-cyan-600/5 blur-3xl pointer-events-none" />
+      <div className="absolute top-1/4 left-1/4 w-80 h-80 rounded-full bg-blue-500/5 blur-3xl pointer-events-none" />
+      <div className="absolute bottom-1/4 right-1/4 w-80 h-80 rounded-full bg-cyan-500/5 blur-3xl pointer-events-none" />
 
       <Container>
         {/* Section Header with Carousel Controls */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-6 text-left">
           <div className="space-y-4 max-w-2xl">
-            <div className="inline-flex items-center justify-center rounded-full border border-blue-200 bg-blue-50 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-blue-700 dark:border-blue-900/60 dark:bg-blue-950/40 dark:text-blue-300">
+            <div className="inline-flex items-center justify-center rounded-full border border-blue-200 bg-blue-50 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-blue-700">
               Community Reviews
             </div>
-            <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-text-primary-light dark:text-text-primary-dark">
+            <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-text-primary-light">
               Trusted by{' '}
               <span className="bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent">
                 Thousands
               </span>
             </h2>
-            <p className="text-base sm:text-lg text-text-secondary-light dark:text-text-secondary-dark">
+            <p className="text-base sm:text-lg text-text-secondary-light">
               Hear from students and freshers across India who landed internships and their first full-time jobs with ApplyOne.
             </p>
           </div>
@@ -175,7 +175,7 @@ export function Reviews() {
           <div className="flex items-center gap-2 self-start md:self-end">
             <button
               onClick={handlePrev}
-              className="p-3 rounded-xl border border-border-light dark:border-border-dark bg-white dark:bg-card-dark hover:bg-bg-alt-light dark:hover:bg-bg-alt-dark text-text-primary-light dark:text-text-primary-dark shadow-sm hover:shadow transition-all cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary"
+              className="p-3 rounded-xl border border-border-light bg-white hover:bg-bg-alt-light text-text-primary-light shadow-sm hover:shadow transition-all cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary"
               aria-label="Previous review"
             >
               <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -184,7 +184,7 @@ export function Reviews() {
             </button>
             <button
               onClick={handleNext}
-              className="p-3 rounded-xl border border-border-light dark:border-border-dark bg-white dark:bg-card-dark hover:bg-bg-alt-light dark:hover:bg-bg-alt-dark text-text-primary-light dark:text-text-primary-dark shadow-sm hover:shadow transition-all cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary"
+              className="p-3 rounded-xl border border-border-light bg-white hover:bg-bg-alt-light text-text-primary-light shadow-sm hover:shadow transition-all cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary"
               aria-label="Next review"
             >
               <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -217,7 +217,7 @@ export function Reviews() {
                 }}
                 className="px-2.5 sm:px-3"
               >
-                <Card className="p-6 h-full flex flex-col justify-between rounded-2xl border border-border-light dark:border-border-dark bg-white dark:bg-card-dark hover:border-slate-300 dark:hover:border-slate-700 shadow-sm hover:shadow-md transition-all duration-300 text-left">
+                <Card className="p-6 h-full flex flex-col justify-between rounded-2xl border border-border-light bg-white hover:border-slate-300 shadow-sm hover:shadow-md transition-all duration-300 text-left">
                   <div className="space-y-3.5 flex-1 flex flex-col">
                     {/* Stars Rating */}
                     <div className="flex items-center gap-1">
@@ -238,7 +238,7 @@ export function Reviews() {
                           return (
                             <div key={i} className="relative h-4.5 w-4.5">
                               <svg
-                                className="absolute inset-0 h-4.5 w-4.5 text-slate-200 dark:text-slate-700 fill-current"
+                                className="absolute inset-0 h-4.5 w-4.5 text-slate-200 fill-current"
                                 viewBox="0 0 20 20"
                                 fill="currentColor"
                               >
@@ -260,7 +260,7 @@ export function Reviews() {
                           return (
                             <svg
                               key={i}
-                              className="h-4.5 w-4.5 text-slate-200 dark:text-slate-700 fill-current"
+                              className="h-4.5 w-4.5 text-slate-200 fill-current"
                               viewBox="0 0 20 20"
                               fill="currentColor"
                             >
@@ -272,21 +272,21 @@ export function Reviews() {
                     </div>
 
                     {/* Review Content */}
-                    <p className="text-sm text-text-secondary-light dark:text-text-secondary-dark leading-relaxed">
+                    <p className="text-sm text-text-secondary-light leading-relaxed">
                       "{review.content}"
                     </p>
                   </div>
 
                   {/* Clean Divider & Profile Signature */}
-                  <div className="flex items-center gap-3 pt-4 border-t border-border-light dark:border-border-dark mt-6">
+                  <div className="flex items-center gap-3 pt-4 border-t border-border-light mt-6">
                     <div className="h-10 w-10 rounded-full bg-gradient-to-tr from-blue-500 to-cyan-500 flex items-center justify-center text-white text-xs font-semibold shadow-inner flex-shrink-0">
                       {review.avatar}
                     </div>
                     <div className="min-w-0 text-left">
-                      <h3 className="text-sm font-bold text-text-primary-light dark:text-text-primary-dark truncate">
+                      <h3 className="text-sm font-bold text-text-primary-light truncate">
                         {review.name}
                       </h3>
-                      <p className="text-xs text-text-secondary-light dark:text-text-secondary-dark truncate">
+                      <p className="text-xs text-text-secondary-light truncate">
                         {review.role} {review.company ? `@ ${review.company}` : ''}
                       </p>
                     </div>
@@ -304,7 +304,7 @@ export function Reviews() {
               key={idx}
               onClick={() => setCurrentIndex(idx)}
               className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
-                currentIndex === idx ? 'w-6 bg-blue-600 dark:bg-cyan-400' : 'w-2 bg-slate-200 dark:bg-slate-700'
+                currentIndex === idx ? 'w-6 bg-blue-600' : 'w-2 bg-slate-200'
               }`}
               aria-label={`Go to slide ${idx + 1}`}
             />
